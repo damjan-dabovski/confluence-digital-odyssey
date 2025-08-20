@@ -1,4 +1,4 @@
-﻿namespace ConfluenceRulesEngine.Test
+﻿namespace ConfluenceRulesEngine.Test.Models
 {
     using ConfluenceRulesEngine.Models;
 
@@ -9,7 +9,10 @@
         public void SerializesGameState()
         {
             // Arrange
-            var game = new Game(Guid.NewGuid());
+            var game = new Game(
+                Guid.NewGuid(),
+                new("Active", []),
+                new("Inactive", []));
 
             // Act
             var json = game.Serialize();

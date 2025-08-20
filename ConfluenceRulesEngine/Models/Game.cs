@@ -2,8 +2,8 @@
 {
     using System.Text.Json;
 
-    internal record Game(Guid Id) {
-        internal string Serialize()
+    public record Game(Guid Id, PlayerInitModel ActivePlayer, PlayerInitModel InactivePlayer) {
+        public string Serialize()
         {
             return JsonSerializer.Serialize(this);
         }
