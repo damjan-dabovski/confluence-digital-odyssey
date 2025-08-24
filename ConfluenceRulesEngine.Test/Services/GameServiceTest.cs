@@ -1,6 +1,7 @@
 ﻿namespace ConfluenceRulesEngine.Test.Services
 {
     using ConfluenceRulesEngine.Models;
+    using ConfluenceRulesEngine.Models.Creation;
     using ConfluenceRulesEngine.Services;
     using System.Threading.Tasks;
 
@@ -23,6 +24,7 @@
                 // Arrange
                 var game = new Game(
                     Guid.NewGuid(),
+                    [],
                     new("Active", []),
                     new("Inactive", []));
 

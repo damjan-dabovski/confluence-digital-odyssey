@@ -1,6 +1,7 @@
 ﻿namespace ConfluenceRulesEngine.Test.Models
 {
     using ConfluenceRulesEngine.Models;
+    using ConfluenceRulesEngine.Models.Creation;
 
     [TestClass]
     public sealed class GameTest
@@ -11,6 +12,7 @@
             // Arrange
             var game = new Game(
                 Guid.NewGuid(),
+                [],
                 new("Active", []),
                 new("Inactive", []));
 
