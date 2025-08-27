@@ -1,11 +1,12 @@
 ﻿namespace ConfluenceRulesEngine.Models
 {
     using ConfluenceRulesEngine.Models.Creation;
+    using ConfluenceRulesEngine.Models.Effects;
     using ConfluenceRulesEngine.Models.Zones;
     using System.Text.Json;
     using System.Text.Json.Serialization;
 
-    public record Game
+    public class Game
     {
         [JsonInclude]
         public readonly Guid Id;
@@ -13,9 +14,14 @@
         [JsonInclude]
         public readonly Player[] Players;
 
+        private readonly Dictionary<int, IEnumerable<GameAction>> CardEffects;
+
         public Game(Guid Id, Dictionary<int, CardInitModel> CardPool, PlayerInitModel ActivePlayer, PlayerInitModel InactivePlayer)
         {
             this.Id = Id;
+
+            this.CardEffects = CardPool.ToDictionary(x => x.Key, x => x.Value.EffectActions);
+
             this.Players =
             [
                 new(ActivePlayer.Name, MapDeckFromCardIds(ActivePlayer.CardIds, CardPool)),
@@ -30,7 +36,11 @@
 
         private static Deck MapDeckFromCardIds(IEnumerable<int> cardIds, Dictionary<int, CardInitModel> CardPool)
         {
-            var mappedCards = cardIds.Select(id => new Card(CardPool[id].Id, CardPool[id].Name));
+            var mappedCards = cardIds.Select(id => new Card(
+                id,
+                0,
+                CardPool[id].Name,
+                CardPool[id].EffectActions));
 
             return new(mappedCards);
         }

@@ -1,4 +1,6 @@
 ﻿namespace ConfluenceRulesEngine.Models.Creation
 {
-    public record CardInitModel(int Id, string Name);
+    using ConfluenceRulesEngine.Models.Effects;
+
+    public record CardInitModel(string Name, IEnumerable<GameAction> EffectActions);
 }
