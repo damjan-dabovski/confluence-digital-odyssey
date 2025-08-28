@@ -1,7 +1,7 @@
-﻿namespace ConfluenceRulesEngine.Models.Zones
-{
-    using ConfluenceRulesEngine.Models.Core;
+﻿using ConfluenceRulesEngine.Models.Core;
 
+namespace ConfluenceRulesEngine.Models.Zones
+{
     public interface IZone
     {
         public ZoneType Type { get; }

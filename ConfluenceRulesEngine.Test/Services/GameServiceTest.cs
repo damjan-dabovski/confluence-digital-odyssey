@@ -1,10 +1,8 @@
-﻿namespace ConfluenceRulesEngine.Test.Services
-{
-    using ConfluenceRulesEngine.Models;
-    using ConfluenceRulesEngine.Models.Creation;
-    using ConfluenceRulesEngine.Services;
-    using System.Threading.Tasks;
+﻿using ConfluenceRulesEngine.Models.Core;
+using ConfluenceRulesEngine.Services;
 
+namespace ConfluenceRulesEngine.Test.Services
+{
     public class GameServiceTest
     {
         private readonly GameService service;

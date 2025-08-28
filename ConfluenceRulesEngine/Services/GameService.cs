@@ -1,7 +1,7 @@
-﻿namespace ConfluenceRulesEngine.Services
-{
-    using ConfluenceRulesEngine.Models.Core;
+﻿using ConfluenceRulesEngine.Models.Core;
 
+namespace ConfluenceRulesEngine.Services
+{
     public class GameService
             : IGameService
     {

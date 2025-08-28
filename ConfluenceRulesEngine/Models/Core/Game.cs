@@ -1,11 +1,14 @@
-﻿namespace ConfluenceRulesEngine.Models.Core
-{
-    using ConfluenceRulesEngine.Models.Creation;
-    using ConfluenceRulesEngine.Models.Effects;
-    using ConfluenceRulesEngine.Models.Zones;
-    using System.Text.Json;
-    using System.Text.Json.Serialization;
+﻿using ConfluenceRulesEngine.Models.Creation;
+using ConfluenceRulesEngine.Models.Effects;
+using ConfluenceRulesEngine.Models.Zones;
 
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+using static ConfluenceRulesEngine.Models.Shared.Enums;
+
+namespace ConfluenceRulesEngine.Models.Core
+{
     public class Game
     {
         [JsonInclude]
@@ -24,9 +27,11 @@
 
             Players =
             [
-                new(ActivePlayer.Name, MapDeckFromCardIds(ActivePlayer.CardIds, CardPool)),
-                new(InactivePlayer.Name, MapDeckFromCardIds(ActivePlayer.CardIds, CardPool))
+                new(ActivePlayer.Name, MapDeckFromCardIds(PlayerId.A, ActivePlayer.CardIds, CardPool)),
+                new(InactivePlayer.Name, MapDeckFromCardIds(PlayerId.B, ActivePlayer.CardIds, CardPool))
             ];
+
+            CardEffects = [];
         }
 
         public string Serialize()
@@ -34,13 +39,14 @@
             return JsonSerializer.Serialize(this);
         }
 
-        private static Deck MapDeckFromCardIds(IEnumerable<int> cardIds, Dictionary<int, CardInitModel> CardPool)
+        private static Deck MapDeckFromCardIds(PlayerId ownerId, IEnumerable<int> cardIds, Dictionary<int, CardInitModel> CardPool)
         {
-            var mappedCards = cardIds.Select(id => new Card(
+            var mappedCards = cardIds.Select((id, index) => new Card(
                 id,
-                0,
+                index,
                 CardPool[id].Name,
-                CardPool[id].EffectActions));
+                CardPool[id].EffectActions,
+                ownerId));
 
             return new(mappedCards);
         }

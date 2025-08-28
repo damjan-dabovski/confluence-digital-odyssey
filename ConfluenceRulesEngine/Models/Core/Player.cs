@@ -1,7 +1,7 @@
-﻿namespace ConfluenceRulesEngine.Models.Core
-{
-    using ConfluenceRulesEngine.Models.Zones;
+﻿using ConfluenceRulesEngine.Models.Zones;
 
+namespace ConfluenceRulesEngine.Models.Core
+{
     public record Player(string Name, Deck Deck)
     {
         public readonly Hand Hand = new();

@@ -1,6 +1,6 @@
-﻿namespace ConfluenceRulesEngine.Models.Zones
-{
-    using static ConfluenceRulesEngine.Models.Shared.Enums;
+﻿using static ConfluenceRulesEngine.Models.Shared.Enums;
 
+namespace ConfluenceRulesEngine.Models.Zones
+{
     public record struct Coords(Row Program, Col Slot, PlayerId OwnerId);
 }

@@ -1,7 +1,7 @@
-﻿namespace ConfluenceRulesEngine.Test.Models
-{
-    using ConfluenceRulesEngine.Models;
+﻿using ConfluenceRulesEngine.Models.Core;
 
+namespace ConfluenceRulesEngine.Test.Models
+{
     [TestClass]
     public sealed class GameTest
     {

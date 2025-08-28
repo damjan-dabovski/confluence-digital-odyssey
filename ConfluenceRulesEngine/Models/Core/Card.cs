@@ -1,6 +1,8 @@
-﻿namespace ConfluenceRulesEngine.Models.Core
-{
-    using ConfluenceRulesEngine.Models.Effects;
+﻿using ConfluenceRulesEngine.Models.Effects;
 
-    public record Card(int CardId, int ObjectId, string Name, IEnumerable<GameAction> EffectActions);
+using static ConfluenceRulesEngine.Models.Shared.Enums;
+
+namespace ConfluenceRulesEngine.Models.Core
+{
+    public record Card(int CardId, int ObjectId, string Name, IEnumerable<GameAction> EffectActions, PlayerId OwnerId);
 }

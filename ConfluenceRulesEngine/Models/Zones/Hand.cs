@@ -1,8 +1,9 @@
-﻿namespace ConfluenceRulesEngine.Models.Zones
-{
-    using ConfluenceRulesEngine.Models.Core;
-    using System.Collections.Generic;
+﻿using ConfluenceRulesEngine.Models.Core;
 
+using System.Collections.Generic;
+
+namespace ConfluenceRulesEngine.Models.Zones
+{
     public class Hand
         : IZone
     {
