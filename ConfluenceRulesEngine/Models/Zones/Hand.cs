@@ -1,5 +1,6 @@
 ﻿namespace ConfluenceRulesEngine.Models.Zones
 {
+    using ConfluenceRulesEngine.Models.Core;
     using System.Collections.Generic;
 
     public class Hand

@@ -1,5 +1,7 @@
 ﻿namespace ConfluenceRulesEngine.Models.Zones
 {
+    using ConfluenceRulesEngine.Models.Core;
+
     public class Deck(IEnumerable<Card> Cards)
         : IZone
     {

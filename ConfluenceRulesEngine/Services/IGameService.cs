@@ -1,6 +1,6 @@
 ﻿namespace ConfluenceRulesEngine.Services
 {
-    using ConfluenceRulesEngine.Models;
+    using ConfluenceRulesEngine.Models.Core;
 
     public interface IGameService
     {

@@ -1,4 +1,4 @@
-﻿namespace ConfluenceRulesEngine.Models
+﻿namespace ConfluenceRulesEngine.Models.Core
 {
     using ConfluenceRulesEngine.Models.Creation;
     using ConfluenceRulesEngine.Models.Effects;
@@ -20,9 +20,9 @@
         {
             this.Id = Id;
 
-            this.CardEffects = CardPool.ToDictionary(x => x.Key, x => x.Value.EffectActions);
+            CardEffects = CardPool.ToDictionary(x => x.Key, x => x.Value.EffectActions);
 
-            this.Players =
+            Players =
             [
                 new(ActivePlayer.Name, MapDeckFromCardIds(ActivePlayer.CardIds, CardPool)),
                 new(InactivePlayer.Name, MapDeckFromCardIds(ActivePlayer.CardIds, CardPool))

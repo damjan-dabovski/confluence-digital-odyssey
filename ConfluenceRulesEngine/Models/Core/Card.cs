@@ -1,4 +1,4 @@
-﻿namespace ConfluenceRulesEngine.Models
+﻿namespace ConfluenceRulesEngine.Models.Core
 {
     using ConfluenceRulesEngine.Models.Effects;
 
