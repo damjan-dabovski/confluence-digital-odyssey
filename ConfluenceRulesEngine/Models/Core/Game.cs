@@ -19,6 +19,8 @@ namespace ConfluenceRulesEngine.Models.Core
 
         private readonly Dictionary<int, IEnumerable<GameAction>> CardEffects;
 
+        private readonly Socket[] board = new Socket[24];
+
         public Game(Guid Id, Dictionary<int, CardInitModel> CardPool, PlayerInitModel ActivePlayer, PlayerInitModel InactivePlayer)
         {
             this.Id = Id;

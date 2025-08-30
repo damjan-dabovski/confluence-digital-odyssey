@@ -27,7 +27,7 @@ namespace ConfluenceRulesEngine.Models.Zones
             }
         }
 
-        public Card Remove(int index = 0)
+        public Card? Remove(int index = 0)
         {
             var card = this.cards.ElementAt(index);
 
