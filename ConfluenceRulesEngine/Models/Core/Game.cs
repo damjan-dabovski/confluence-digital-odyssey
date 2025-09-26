@@ -17,7 +17,7 @@ namespace ConfluenceRulesEngine.Models.Core
         [JsonInclude]
         public readonly Player[] Players;
 
-        private readonly Dictionary<int, IEnumerable<GameAction>> CardEffects;
+        private readonly Dictionary<int, IEnumerable<CardEffect>> CardEffects;
 
         private readonly Socket[] board = new Socket[24];
 
@@ -25,7 +25,7 @@ namespace ConfluenceRulesEngine.Models.Core
         {
             this.Id = Id;
 
-            CardEffects = CardPool.ToDictionary(x => x.Key, x => x.Value.EffectActions);
+            CardEffects = CardPool.ToDictionary(x => x.Key, x => x.Value.CardEffects);
 
             Players =
             [
@@ -47,7 +47,7 @@ namespace ConfluenceRulesEngine.Models.Core
                 id,
                 index,
                 CardPool[id].Name,
-                CardPool[id].EffectActions,
+                CardPool[id].CardEffects,
                 ownerId));
 
             return new(mappedCards);
