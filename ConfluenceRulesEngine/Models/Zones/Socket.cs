@@ -15,17 +15,11 @@ namespace ConfluenceRulesEngine.Models.Zones
 
         public void Add(Card card, int index = 0) => this.card.Add(card);
 
-        public Card? Remove(int index = 0)
+        public void Remove(Card card)
         {
             if (this.card.Value is Card c)
             {
                 _ = this.card.Remove(c);
-
-                return c;
-            }
-            else
-            {
-                return null;
             }
         }
     }

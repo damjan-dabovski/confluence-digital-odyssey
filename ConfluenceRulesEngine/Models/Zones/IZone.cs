@@ -10,6 +10,6 @@ namespace ConfluenceRulesEngine.Models.Zones
 
         public void Add(Card card, int index = 0);
 
-        public Card? Remove(int index = 0);
+        public void Remove(Card card);
     }
 }
