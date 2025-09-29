@@ -9,7 +9,7 @@ using static ConsoleApp1.Enums;
 namespace ConsoleApp1
 {
     public class CardSelector
-        : ISelector
+        : ISelector<IEnumerable<int>>
     {
         public CardType Type { get; set; }
         public required Zone Zone { get; set; }

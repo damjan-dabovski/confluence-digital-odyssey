@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 namespace ConsoleApp1
 {
     public class ContextSelector
-        : ISelector
+        : ISelector<object> // we can really put everything in the context, so this needs to be as loosely typed as possible; the individual resolvers that evaluate this need to be able to make sure things cast successfully
     {
-        //TODO this is wrong since 1) it needs to be the temporary ExecutionContext and 2) we can't have a reference
-        // to that at 'compile' time anyway
-        //private readonly GameContext context;
         private readonly string key;
 
         public ContextSelector(string key)
@@ -19,6 +16,6 @@ namespace ConsoleApp1
             this.key = key;
         }
 
-        public IEnumerable<int> Evaluate(GameContext context) => context.Store[this.key];
+        public object Evaluate(GameContext context) => context.Store[this.key];
     }
 }

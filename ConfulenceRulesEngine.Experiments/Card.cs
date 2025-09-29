@@ -10,7 +10,7 @@ namespace ConsoleApp1
 {
     public class Card
     {
-        int ObjectId;
-        PlayerId OwnerId;
+        public int ObjectId;
+        public PlayerId OwnerId;
     }
 }

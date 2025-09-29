@@ -9,7 +9,7 @@ namespace ConsoleApp1
     public class GameContext
     {
         public Dictionary<int, Card> Cards;
-        public Dictionary<string, IEnumerable<int>> Store;
+        public Dictionary<string, object> Store;
 
         public GameContext(Dictionary<int, Card> cards)
         {

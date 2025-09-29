@@ -27,6 +27,10 @@
              */
 
             var __ = new ChoiceAction(
+                /*
+                 * TODO is this fucked because of covariance/contravariance?
+                 */
+
                 new ContextSelector("owner"),
                 new CardSelector()
                 {

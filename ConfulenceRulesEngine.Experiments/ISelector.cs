@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public interface ISelector
+    public interface ISelector<T>
     {
-        IEnumerable<int> Evaluate(GameContext context);
+        T Evaluate(GameContext context);
     }
 }
