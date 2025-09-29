@@ -48,7 +48,8 @@ namespace ConfluenceRulesEngine.Models.Core
                 index,
                 CardPool[id].Name,
                 CardPool[id].CardEffects,
-                ownerId));
+                ownerId,
+                null));
 
             return new(mappedCards);
         }

@@ -1,4 +1,6 @@
 ﻿namespace ConfluenceRulesEngine.Models.Effects
 {
-    public record CardEffect((int From, int To) EffectSlots, IEnumerable<GameAction> Actions);
+    public record CardEffect(
+        (uint From, uint To) EffectSlots,
+        IEnumerable<GameAction> Actions);
 }

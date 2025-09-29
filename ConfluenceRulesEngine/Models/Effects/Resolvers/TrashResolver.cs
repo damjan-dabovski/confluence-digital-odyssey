@@ -16,7 +16,9 @@ namespace ConfluenceRulesEngine.Models.Effects.Resolvers
                 var card = gameContext.CardObjects[targetId];
                 var owner = gameContext.Players[card.OwnerId];
 
-                Helpers.Move(card, ???, owner.Trash); // TODO how to know which zone a card is in?
+                Helpers.Move(card, card.CurrentZone, owner.Trash);
+
+                //ThrowEvent(new CardTrashedEvent(card.CurrentZone))
             }
         }
     }
