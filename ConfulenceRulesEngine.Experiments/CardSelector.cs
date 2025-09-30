@@ -17,6 +17,10 @@ namespace ConsoleApp1
 
         public CardSelector() { }
 
-        public IEnumerable<int> Evaluate(GameContext context) => throw new NotImplementedException();
+        public IEnumerable<int> Evaluate(GameContext context)
+        {
+            // skipping actual implementation here and just returning whatever
+            return context.Cards.Select(kvp => kvp.Key);
+        }
     }
 }

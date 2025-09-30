@@ -4,9 +4,9 @@ namespace ConsoleApp1
 {
     public class ChoiceAction : Action
     {
-        readonly ISelector<PlayerId> TargetPlayer;
-        readonly ISelector<IEnumerable<int>> Choices;
-        readonly Action Continuation;
+        public readonly ISelector<PlayerId> TargetPlayer;
+        public readonly ISelector<IEnumerable<int>> Choices;
+        public readonly Action Continuation;
 
         public ChoiceAction(ISelector<PlayerId> targetPlayer, ISelector<IEnumerable<int>> choices, Action continuation)
         {

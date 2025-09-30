@@ -1,14 +1,23 @@
 ﻿namespace ConsoleApp1
 {
+    using ConfulenceRulesEngine.Experiments;
+    using static ConsoleApp1.Enums;
+
     public class Program
     {
+        static ChoiceResolver choiceResolver = new();
+        static TrashResolver trashResolver = new();
+
         static void Main(string[] _)
         {
-            //var cards = new Dictionary<int, Card> {
-            //    { 1, new() }
-            //};
+            var cards = new Dictionary<int, Card> {
+                { 1, new(1, PlayerId.A) },
+                { 2, new(2, PlayerId.B) },
+            };
 
-            //var context = new GameContext(cards);
+            var context = new GameContext(cards);
+
+            context.Store["owner"] = PlayerId.B;
 
             /*
              * choice {
@@ -26,19 +35,39 @@
              * }
              */
 
-            var __ = new ChoiceAction(
-                /*
-                 * TODO is this fucked because of covariance/contravariance?
-                 */
-
-                new ContextSelector("owner"),
+            var choiceAction = new ChoiceAction(
+                new ContextSelector<PlayerId>("owner"),
                 new CardSelector()
                 {
-                    Zone = new(new ContextSelector("owner"), Enums.ZoneType.Board),
+                    Zone = new(new ContextSelector<PlayerId>("owner"), Enums.ZoneType.Board),
                     Type = Enums.CardType.Function
                 },
-                new TrashAction(new ContextSelector("choice"))
+                new TrashAction(new ContextSelector<IEnumerable<int>>("choice"))
             );
+
+            context.ActionQueue.Add(choiceAction);
+
+            while (context.ActionQueue.Count != 0)
+            {
+                var next = context.ActionQueue[^1];
+                context.ActionQueue.Remove(next);
+                Resolve(next, context);
+            }
+        }
+
+        static void Resolve(Action action, GameContext context)
+        {
+            switch(action)
+            {
+                case ChoiceAction ca:
+                    choiceResolver.Resolve(ca, context);
+                    break;
+                case TrashAction ta:
+                    trashResolver.Resolve(ta, context);
+                    break;
+                default:
+                    throw new InvalidOperationException("No resolver for that action type");
+            };
         }
     }
 }
