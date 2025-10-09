@@ -1,13 +1,8 @@
-﻿namespace ConfulenceRulesEngine.Experiments
-{
-    using Action = ConsoleApp1.Action;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using ConsoleApp1;
+﻿using Action = ConsoleApp1.Action;
+using ConsoleApp1;
 
+namespace ConfulenceRulesEngine.Experiments
+{
     public interface IResolver<T>
         where T: Action
     {

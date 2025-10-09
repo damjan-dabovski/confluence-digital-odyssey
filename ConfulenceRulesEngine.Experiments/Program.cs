@@ -1,8 +1,9 @@
-﻿namespace ConsoleApp1
-{
-    using ConfulenceRulesEngine.Experiments;
-    using static ConsoleApp1.Enums;
+﻿using ConfulenceRulesEngine.Experiments;
 
+using static ConsoleApp1.Enums;
+
+namespace ConsoleApp1
+{
     public class Program
     {
         static ChoiceResolver choiceResolver = new();

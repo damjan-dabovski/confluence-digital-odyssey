@@ -1,8 +1,9 @@
-﻿namespace ConfulenceRulesEngine.Experiments
-{
-    using ConsoleApp1;
-    using static ConsoleApp1.Enums;
+﻿using ConsoleApp1;
 
+using static ConsoleApp1.Enums;
+
+namespace ConfulenceRulesEngine.Experiments
+{
     public class ChooseManyAction
         : Action
     {

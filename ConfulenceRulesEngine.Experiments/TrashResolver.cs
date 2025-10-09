@@ -1,7 +1,7 @@
-﻿namespace ConfulenceRulesEngine.Experiments
-{
-    using ConsoleApp1;
+﻿using ConsoleApp1;
 
+namespace ConfulenceRulesEngine.Experiments
+{
     public class TrashResolver
         : IResolver<TrashAction>
     {

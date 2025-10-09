@@ -1,6 +1,4 @@
-﻿using static ConfluenceRulesEngine.Models.Shared.Enums;
-
-namespace ConfluenceRulesEngine.Models.Effects.Actions
+﻿namespace ConfluenceRulesEngine.Models.Effects.Actions
 {
     public class TrashAction
         : Action
