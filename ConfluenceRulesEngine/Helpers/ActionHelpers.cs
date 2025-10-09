@@ -1,9 +1,9 @@
 ﻿using ConfluenceRulesEngine.Models.Core;
 using ConfluenceRulesEngine.Models.Zones;
 
-namespace ConfluenceRulesEngine.Models.Shared
+namespace ConfluenceRulesEngine.Helpers
 {
-    public static class Helpers
+    public static class ActionHelpers
     {
         public static void Move(Card card, IZone source, IZone destination)
         {

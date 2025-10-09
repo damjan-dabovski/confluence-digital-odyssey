@@ -1,4 +1,5 @@
-﻿using ConfluenceRulesEngine.Models.Effects.Actions;
+﻿using ConfluenceRulesEngine.Helpers;
+using ConfluenceRulesEngine.Models.Effects.Actions;
 using ConfluenceRulesEngine.Models.Shared;
 
 namespace ConfluenceRulesEngine.Models.Effects.Resolvers
@@ -16,7 +17,7 @@ namespace ConfluenceRulesEngine.Models.Effects.Resolvers
                 var card = gameContext.CardObjects[targetId];
                 var owner = gameContext.Players[card.OwnerId];
 
-                Helpers.Move(card, card.CurrentZone, owner.Trash);
+                ActionHelpers.Move(card, card.CurrentZone, owner.Trash);
 
                 //ThrowEvent(new CardTrashedEvent(card.CurrentZone))
             }

@@ -27,5 +27,21 @@ namespace ConsoleApp1
             Trash,
             Board
         }
+
+        public enum Row
+            : byte
+        {
+            P1,
+            P2,
+            P3,
+        }
+
+        public enum Col
+            : byte
+        {
+            S1,
+            S2,
+            S3,
+        }
     }
 }

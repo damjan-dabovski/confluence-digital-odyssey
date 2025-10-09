@@ -3,23 +3,26 @@
     public class Enums
     {
         public enum PlayerId
+            : byte
         {
             A,
             B
         }
 
         public enum Row
+            : byte
         {
-            P1 = 1,
-            P2 = 2,
-            P3 = 3
+            P1,
+            P2,
+            P3,
         }
 
         public enum Col
+            : byte
         {
-            S1 = 1,
-            S2 = 2,
-            S3 = 3
+            S1,
+            S2,
+            S3,
         }
     }
 }

@@ -47,12 +47,15 @@
 
             context.ActionQueue.Add(choiceAction);
 
-            while (context.ActionQueue.Count != 0)
-            {
-                var next = context.ActionQueue[^1];
-                context.ActionQueue.Remove(next);
-                Resolve(next, context);
-            }
+            //while (context.ActionQueue.Count != 0)
+            //{
+            //    var next = context.ActionQueue[^1];
+            //    context.ActionQueue.Remove(next);
+            //    Resolve(next, context);
+            //}
+
+            Helpers.GetPositionFromCoords(new(Row.P3, Col.S1, true, PlayerId.A));
+            var test= Helpers.GetCoordsFromPosition(3);
         }
 
         static void Resolve(Action action, GameContext context)
