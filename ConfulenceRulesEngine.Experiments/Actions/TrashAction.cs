@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ConfulenceRulesEngine.Experiments.Selectors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace ConfulenceRulesEngine.Experiments.Actions
 {
     public class TrashAction
         : Action
@@ -13,7 +14,7 @@ namespace ConsoleApp1
 
         public TrashAction(ISelector<IEnumerable<int>> targets)
         {
-            this.Targets = targets;
+            Targets = targets;
         }
     }
 }

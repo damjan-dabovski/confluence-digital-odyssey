@@ -24,5 +24,12 @@
             S2,
             S3,
         }
+
+        public enum CardType
+            : byte
+        {
+            Function,
+            Lambda
+        }
     }
 }

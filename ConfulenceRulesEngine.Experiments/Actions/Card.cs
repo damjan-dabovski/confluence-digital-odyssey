@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using static ConsoleApp1.Enums;
 
-namespace ConsoleApp1
+namespace ConfulenceRulesEngine.Experiments.Actions
 {
     public class Card
     {

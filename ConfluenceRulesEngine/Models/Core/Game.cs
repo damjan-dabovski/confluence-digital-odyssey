@@ -47,9 +47,12 @@ namespace ConfluenceRulesEngine.Models.Core
                 id,
                 index,
                 CardPool[id].Name,
+                CardPool[id].Type,
                 CardPool[id].CardEffects,
                 ownerId,
-                null));
+                null!)); // TODO since we want a Deck to be constructed with the Cards,
+                         // but the Cards need to be constructed with a Zone, one has to take precedence
+                         // so this is an explicit null because it otherwise makes no sense for Card.CurrentZone to be null
 
             return new(mappedCards);
         }

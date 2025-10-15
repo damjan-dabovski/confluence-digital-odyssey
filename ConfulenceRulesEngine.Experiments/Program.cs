@@ -1,6 +1,9 @@
 ﻿namespace ConsoleApp1
 {
     using ConfulenceRulesEngine.Experiments;
+    using ConfulenceRulesEngine.Experiments.Actions;
+    using ConfulenceRulesEngine.Experiments.Resolvers;
+    using ConfulenceRulesEngine.Experiments.Selectors;
     using static ConsoleApp1.Enums;
 
     public class Program

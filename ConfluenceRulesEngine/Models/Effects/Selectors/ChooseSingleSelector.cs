@@ -1,0 +1,50 @@
+﻿using ConfluenceRulesEngine.Models.Shared;
+
+using static ConfluenceRulesEngine.Models.Shared.Enums;
+
+namespace ConfluenceRulesEngine.Models.Effects.Selectors
+{
+    public class ChooseSingleSelector
+        : ISelector<IEnumerable<int>>
+    {
+        public readonly ISelector<PlayerId> TargetPlayer;
+        public readonly ISelector<IEnumerable<int>> Choices;
+
+        public ChooseSingleSelector(ISelector<PlayerId> targetPlayer, ISelector<IEnumerable<int>> choices)
+        {
+            this.TargetPlayer = targetPlayer;
+            this.Choices = choices;
+        }
+
+        public IEnumerable<int>? Evaluate(GameContext context)
+        {
+            var choices = this.Choices.Evaluate(context)?.ToList();
+
+            if (choices is null || choices.Count == 0)
+            {
+                return [];
+            }
+
+            var targetPlayer = TargetPlayer.Evaluate(context);
+
+            // TODO this is just placeholder codeuntil a more abstract communication service or similar
+            // is implemented for managing user input (also consider that it needs to be potentially used by AI players)
+
+            Console.WriteLine($"Player {targetPlayer} choose from:");
+
+            foreach (var (choice, index) in choices.Select((c, i) => (c, i)))
+            {
+                Console.WriteLine($"{index}: {choice}");
+            }
+
+            if (!int.TryParse(Console.ReadLine(), out int input))
+            {
+                return [];
+            }
+            else
+            {
+                return ([choices[input]]);
+            }
+        }
+    }
+}

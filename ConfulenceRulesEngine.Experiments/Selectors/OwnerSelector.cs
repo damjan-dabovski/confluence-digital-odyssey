@@ -1,4 +1,4 @@
-﻿namespace ConfulenceRulesEngine.Experiments
+﻿namespace ConfulenceRulesEngine.Experiments.Selectors
 {
     using ConsoleApp1;
     using static ConsoleApp1.Enums;
@@ -15,7 +15,7 @@
 
         public PlayerId Evaluate(GameContext context)
         {
-            return context.Cards[this.CardId].OwnerId;
+            return context.Cards[CardId].OwnerId;
         }
     }
 }

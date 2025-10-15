@@ -1,6 +1,7 @@
-﻿using static ConsoleApp1.Enums;
+﻿using ConfulenceRulesEngine.Experiments.Selectors;
+using static ConsoleApp1.Enums;
 
-namespace ConsoleApp1
+namespace ConfulenceRulesEngine.Experiments.Actions
 {
     public class ChoiceAction : Action
     {

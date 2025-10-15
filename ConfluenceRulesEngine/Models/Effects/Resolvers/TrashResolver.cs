@@ -18,8 +18,6 @@ namespace ConfluenceRulesEngine.Models.Effects.Resolvers
                 var owner = gameContext.Players[card.OwnerId];
 
                 ActionHelpers.Move(card, card.CurrentZone, owner.Trash);
-
-                //ThrowEvent(new CardTrashedEvent(card.CurrentZone))
             }
         }
     }

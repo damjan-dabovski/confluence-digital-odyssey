@@ -2,14 +2,23 @@
 
 namespace ConfluenceRulesEngine.Models.Zones
 {
-    public class Deck(IEnumerable<Card> Cards)
+    public class Deck
         : IZone
     {
-        private readonly List<Card> cards = [.. Cards];
+        private readonly List<Card> cards;
 
         public ZoneType Type => ZoneType.Deck;
 
         public ICollection<Card> Cards => cards;
+
+        public Deck(IEnumerable<Card> cards)
+        {
+            this.cards = [.. cards];
+            foreach (var card in this.cards)
+            {
+                card.CurrentZone = this;
+            }
+        }
 
         public void Add(Card card, int index = 0)
         {

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleApp1
+﻿namespace ConsoleApp1
 {
+    using ConfulenceRulesEngine.Experiments.Actions;
+    using System;
+    using System.Collections.Generic;
+    using Action = ConfulenceRulesEngine.Experiments.Actions.Action;
+
     public class GameContext
     {
         public Dictionary<int, Card> Cards;

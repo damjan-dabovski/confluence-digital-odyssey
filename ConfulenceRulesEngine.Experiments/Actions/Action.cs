@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace ConfulenceRulesEngine.Experiments.Actions
 {
-    public interface ISelector<T>
+    public abstract class Action
     {
-        T? Evaluate(GameContext context);
     }
 }

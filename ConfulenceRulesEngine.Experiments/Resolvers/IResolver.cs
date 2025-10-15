@@ -1,6 +1,6 @@
-﻿namespace ConfulenceRulesEngine.Experiments
+﻿namespace ConfulenceRulesEngine.Experiments.Resolvers
 {
-    using Action = ConsoleApp1.Action;
+    using Action = Actions.Action;
     using System;
     using System.Collections.Generic;
     using System.Linq;
