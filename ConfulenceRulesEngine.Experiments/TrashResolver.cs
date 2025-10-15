@@ -7,7 +7,9 @@
     {
         public void Resolve(TrashAction action, GameContext context)
         {
-            Console.WriteLine($"Executing trash action with targets: {string.Join(", ", action.Targets.Evaluate(context) ?? [])}");
+            var targets = action.Targets.Evaluate(context);
+
+            Console.WriteLine($"Executing trash action with targets: {string.Join(", ", targets ?? [])}");
         }
     }
 }

@@ -5,7 +5,6 @@
 
     public class Program
     {
-        static ChoiceResolver choiceResolver = new();
         static TrashResolver trashResolver = new();
 
         static void Main(string[] _)
@@ -35,42 +34,34 @@
              * }
              */
 
-            var choiceAction = new ChoiceAction(
+            var trashAction = new TrashAction(new ChoiceSelector(
                 new ContextSelector<PlayerId>("owner"),
-                new CardSelector()
-                {
-                    Zone = new(new ContextSelector<PlayerId>("owner"), Enums.ZoneType.Board),
-                    Type = Enums.CardType.Function
-                },
-                new TrashAction(new ContextSelector<IEnumerable<int>>("choice"))
-            );
+                new CardSelector() { Zone = new(new ContextSelector<PlayerId>("owner"), Enums.ZoneType.Board), Type = Enums.CardType.Function }));
 
-            context.ActionQueue.Add(choiceAction);
+            context.ActionQueue.Add(trashAction);
 
-            //while (context.ActionQueue.Count != 0)
-            //{
-            //    var next = context.ActionQueue[^1];
-            //    context.ActionQueue.Remove(next);
-            //    Resolve(next, context);
-            //}
+            while (context.ActionQueue.Count != 0)
+            {
+                var next = context.ActionQueue[^1];
+                context.ActionQueue.Remove(next);
+                Resolve(next, context);
+            }
 
             Helpers.GetPositionFromCoords(new(Row.P3, Col.S1, true, PlayerId.A));
-            var test= Helpers.GetCoordsFromPosition(3);
+            var test = Helpers.GetCoordsFromPosition(3);
         }
 
         static void Resolve(Action action, GameContext context)
         {
-            switch(action)
+            switch (action)
             {
-                case ChoiceAction ca:
-                    choiceResolver.Resolve(ca, context);
-                    break;
                 case TrashAction ta:
                     trashResolver.Resolve(ta, context);
                     break;
                 default:
                     throw new InvalidOperationException("No resolver for that action type");
-            };
+            }
+            ;
         }
     }
 }
