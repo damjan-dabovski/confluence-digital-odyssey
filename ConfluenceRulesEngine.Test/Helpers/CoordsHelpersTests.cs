@@ -1,9 +1,10 @@
-﻿namespace ConfluenceRulesEngine.Test.Helpers
-{
-    using ConfluenceRulesEngine.Helpers;
-    using ConfluenceRulesEngine.Models.Zones;
-    using static ConfluenceRulesEngine.Models.Shared.Enums;
+﻿using ConfluenceRulesEngine.Helpers;
+using ConfluenceRulesEngine.Models.Zones;
 
+using static ConfluenceRulesEngine.Models.Shared.Enums;
+
+namespace ConfluenceRulesEngine.Test.Helpers
+{
     public class CoordsHelpersTests
     {
         /*

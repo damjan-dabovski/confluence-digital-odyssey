@@ -1,7 +1,7 @@
-﻿namespace ConfulenceRulesEngine.Experiments
-{
-    using static ConsoleApp1.Enums;
+﻿using static ConsoleApp1.Enums;
 
+namespace ConfulenceRulesEngine.Experiments
+{
     public static class Helpers
     {
         /*
