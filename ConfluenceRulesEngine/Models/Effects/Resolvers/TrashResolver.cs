@@ -9,7 +9,7 @@ namespace ConfluenceRulesEngine.Models.Effects.Resolvers
     {
         public void Resolve(TrashAction action, ResolutionContext resolutionContext, GameContext gameContext)
         {
-            foreach (var targetId in action.Targets)
+            foreach (var targetId in action.Targets.Evaluate(gameContext))
             {
                 // TODO handle prompting users for ordering the cards when multiple are
                 // trashed at once (incl. splitting the card processing in APNAP order)

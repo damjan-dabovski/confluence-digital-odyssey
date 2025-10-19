@@ -4,14 +4,16 @@ using ConfluenceRulesEngine.Models.Shared;
 
 namespace ConfluenceRulesEngine.Models.Zones
 {
-    internal class Socket
+    internal class Socket(int Id = 0)
         : IZone
     {
         private readonly SingleCardCollection card = new();
 
-        public ZoneType Type => ZoneType.Socket;
+        public ZoneType Type => ZoneType.Board;
 
         public ICollection<Card> Cards => card;
+
+        public int Id = Id;
 
         public void Add(Card card, int index = 0) => this.card.Add(card);
 

@@ -9,6 +9,6 @@ namespace ConfulenceRulesEngine.Experiments.Selectors
 {
     public interface ISelector<T>
     {
-        T? Evaluate(GameContext context);
+        T Evaluate(GameContext context);
     }
 }

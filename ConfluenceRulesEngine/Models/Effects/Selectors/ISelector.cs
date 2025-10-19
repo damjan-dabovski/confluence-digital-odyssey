@@ -4,6 +4,6 @@ namespace ConfluenceRulesEngine.Models.Effects.Selectors
 {
     public interface ISelector<T>
     {
-        public T? Evaluate(GameContext context);
+        public T Evaluate(GameContext context);
     }
 }

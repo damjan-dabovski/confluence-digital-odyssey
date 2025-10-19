@@ -16,7 +16,7 @@ namespace ConfluenceRulesEngine.Models.Effects.Selectors
             this.Choices = choices;
         }
 
-        public IEnumerable<int>? Evaluate(GameContext context)
+        public IEnumerable<int> Evaluate(GameContext context)
         {
             var choices = this.Choices.Evaluate(context)?.ToList();
 
@@ -27,7 +27,7 @@ namespace ConfluenceRulesEngine.Models.Effects.Selectors
 
             var targetPlayer = TargetPlayer.Evaluate(context);
 
-            // TODO this is just placeholder codeuntil a more abstract communication service or similar
+            // TODO this is just placeholder code until a more abstract communication service or similar
             // is implemented for managing user input (also consider that it needs to be potentially used by AI players)
 
             Console.WriteLine($"Player {targetPlayer} choose from:");
@@ -37,7 +37,7 @@ namespace ConfluenceRulesEngine.Models.Effects.Selectors
                 Console.WriteLine($"{index}: {choice}");
             }
 
-            if (!int.TryParse(Console.ReadLine(), out int input))
+            if (!int.TryParse(Console.ReadLine(), out var input))
             {
                 return [];
             }

@@ -31,5 +31,21 @@
             Function,
             Lambda
         }
+
+        public enum SocketType
+        {
+            NonInterrupt,
+            Interrupt,
+            Any
+        }
+
+        public enum ArithmeticOperator
+        {
+            Add,
+            Subtract,
+            Multiply,
+            DivideRoundUp,
+            DivideRoundDown
+        }
     }
 }

@@ -5,6 +5,6 @@
         Hand,
         Deck,
         Trash,
-        Socket
+        Board
     }
 }
