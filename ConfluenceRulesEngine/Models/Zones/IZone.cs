@@ -8,7 +8,7 @@ namespace ConfluenceRulesEngine.Models.Zones
 
         public ICollection<Card> Cards { get; }
 
-        public void Add(Card card, int index = 0);
+        public void Add(Card card);
 
         public void Remove(Card card);
     }

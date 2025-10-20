@@ -3,7 +3,7 @@
 namespace ConfluenceRulesEngine.Models.Zones
 {
     public class Deck
-        : IZone
+        : IOrderedZone
     {
         private readonly List<Card> cards;
 
@@ -22,19 +22,11 @@ namespace ConfluenceRulesEngine.Models.Zones
 
         public void Add(Card card, int index = 0)
         {
-            if (index < 0)
-            {
-                this.cards.Insert(0, card);
-            }
-            else if (index >= this.cards.Count)
-            {
-                this.cards.Add(card);
-            }
-            else
-            {
-                this.cards.Insert(index, card);
-            }
+            index = int.Clamp(index, 0, this.cards.Count);
+            this.cards.Insert(index, card);
         }
+
+        public void Add(Card card) => this.Cards.Add(card);
 
         public void Remove(Card card) => this.cards.Remove(card);
     }

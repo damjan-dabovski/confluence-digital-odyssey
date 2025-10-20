@@ -15,7 +15,7 @@ namespace ConfluenceRulesEngine.Models.Zones
 
         public int Id = Id;
 
-        public void Add(Card card, int index = 0) => this.card.Add(card);
+        public void Add(Card card) => this.card.Add(card);
 
         public void Remove(Card card)
         {

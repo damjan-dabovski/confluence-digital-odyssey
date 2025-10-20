@@ -13,11 +13,7 @@ namespace ConfluenceRulesEngine.Helpers
                 .Skip((int)playerId * 12)
                 .Take(12);
 
-            if (socketType == SocketType.Any)
-            {
-                return query;
-            }
-            else
+            if (socketType != SocketType.Any)
             {
                 query = query
                     .Skip((int)socketType)
