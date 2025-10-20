@@ -2,30 +2,30 @@
 
 using static ConfluenceRulesEngine.Models.Shared.Enums;
 
-namespace ConfluenceRulesEngine.Models.Effects.Selectors.Operators
+namespace ConfluenceRulesEngine.Models.Effects.Selectors.Operators.Numeric
 {
-    public class NumberArithmeticSelector
-        : ISelector<uint>
+    public class NumberArithmeticEvaluator
+        : IEvaluator<int>
     {
-        private readonly uint Left;
-        private readonly uint Right;
+        private readonly int Left;
+        private readonly int Right;
         private readonly ArithmeticOperator Operator;
 
-        public NumberArithmeticSelector(uint left, uint right, ArithmeticOperator op)
+        public NumberArithmeticEvaluator(int left, int right, ArithmeticOperator op)
         {
             this.Left = left;
             this.Right = right;
             this.Operator = op;
         }
 
-        public uint Evaluate(GameContext context)
+        public int Evaluate(GameContext context)
         {
             return this.Operator switch
             {
                 ArithmeticOperator.Add => Left + Right,
                 ArithmeticOperator.Subtract => Left - Right,
                 ArithmeticOperator.Multiply => Left * Right,
-                ArithmeticOperator.DivideRoundUp => Left % Right > 0 ? (Left / Right) + 1 : (Left / Right),
+                ArithmeticOperator.DivideRoundUp => Left % Right > 0 ? (Left / Right) + 1 : Left / Right,
                 ArithmeticOperator.DivideRoundDown => Left / Right,
                 _ => throw new InvalidOperationException("No such arithmetic operator exists")
             };

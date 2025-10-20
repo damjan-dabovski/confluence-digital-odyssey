@@ -4,7 +4,7 @@
     using ConfluenceRulesEngine.Models.Shared;
 
     public class FakeSelector<T>
-        : ISelector<T>
+        : IEvaluator<T>
     {
         public readonly T Value;
 

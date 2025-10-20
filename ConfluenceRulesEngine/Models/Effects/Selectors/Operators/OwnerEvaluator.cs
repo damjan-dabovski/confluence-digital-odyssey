@@ -4,12 +4,12 @@ using static ConfluenceRulesEngine.Models.Shared.Enums;
 
 namespace ConfluenceRulesEngine.Models.Effects.Selectors
 {
-    public class OwnerSelector
-        : ISelector<PlayerId>
+    public class OwnerEvaluator
+        : IEvaluator<PlayerId>
     {
         private readonly int CardId;
 
-        public OwnerSelector(int cardId)
+        public OwnerEvaluator(int cardId)
         {
             CardId = cardId;
         }

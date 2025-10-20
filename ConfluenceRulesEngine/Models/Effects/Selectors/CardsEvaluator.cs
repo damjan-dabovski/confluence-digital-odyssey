@@ -5,14 +5,14 @@ using static ConfluenceRulesEngine.Models.Shared.Enums;
 
 namespace ConfluenceRulesEngine.Models.Effects.Selectors
 {
-    public class CardsSelector
-        : ISelector<IEnumerable<int>>
+    public class CardsEvaluator
+        : IEvaluator<IEnumerable<int>>
     {
         public readonly CardType? Type;
-        public readonly ISelector<IEnumerable<IZone>> Zone;
-        public readonly ISelector<bool>? PositionPredicate;
+        public readonly IEvaluator<IEnumerable<IZone>> Zone; // TODO should we do union of CardEvaluators instead of union of zones in the CardEvaluator?
+        public readonly IEvaluator<bool>? PositionPredicate;
 
-        public CardsSelector(ISelector<IEnumerable<IZone>> zone, CardType? type = null, ISelector<bool>? positionPredicate = null)
+        public CardsEvaluator(IEvaluator<IEnumerable<IZone>> zone, CardType? type = null, IEvaluator<bool>? positionPredicate = null)
         {
             this.Type = type;
             this.Zone = zone;

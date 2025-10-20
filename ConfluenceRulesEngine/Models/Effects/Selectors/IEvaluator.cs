@@ -2,7 +2,7 @@
 
 namespace ConfluenceRulesEngine.Models.Effects.Selectors
 {
-    public interface ISelector<T>
+    public interface IEvaluator<T>
     {
         public T Evaluate(GameContext context);
     }

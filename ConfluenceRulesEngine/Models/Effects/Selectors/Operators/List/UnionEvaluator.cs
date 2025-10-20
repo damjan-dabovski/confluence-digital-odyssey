@@ -2,13 +2,13 @@
 
 namespace ConfluenceRulesEngine.Models.Effects.Selectors.Operators
 {
-    public class UnionSelector<T>
-        : ISelector<IEnumerable<T>>
+    public class UnionEvaluator<T>
+        : IEvaluator<IEnumerable<T>>
     {
-        private readonly ISelector<IEnumerable<T>> Left;
-        private readonly ISelector<IEnumerable<T>> Right;
+        private readonly IEvaluator<IEnumerable<T>> Left;
+        private readonly IEvaluator<IEnumerable<T>> Right;
 
-        public UnionSelector(ISelector<IEnumerable<T>> left, ISelector<IEnumerable<T>> right)
+        public UnionEvaluator(IEvaluator<IEnumerable<T>> left, IEvaluator<IEnumerable<T>> right)
         {
             this.Left = left;
             this.Right = right;

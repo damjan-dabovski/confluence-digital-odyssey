@@ -2,13 +2,13 @@
 
 namespace ConfluenceRulesEngine.Models.Effects.Selectors.Operators
 {
-    public class SkipSelector<T>
-        : ISelector<IEnumerable<T>>
+    public class TakeEvaluator<T>
+        : IEvaluator<IEnumerable<T>>
     {
-        private readonly ISelector<IEnumerable<T>> Source;
+        private readonly IEvaluator<IEnumerable<T>> Source;
         private readonly int Amount;
 
-        public SkipSelector(ISelector<IEnumerable<T>> source, int amount)
+        public TakeEvaluator(IEvaluator<IEnumerable<T>> source, int amount)
         {
             this.Source = source;
             this.Amount = amount;
@@ -17,7 +17,7 @@ namespace ConfluenceRulesEngine.Models.Effects.Selectors.Operators
         public IEnumerable<T> Evaluate(GameContext context)
         {
             var list = this.Source.Evaluate(context);
-            return list.Skip(this.Amount);
+            return list.Take(this.Amount);
         }
     }
 }

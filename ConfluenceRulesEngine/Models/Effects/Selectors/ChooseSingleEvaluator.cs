@@ -4,13 +4,13 @@ using static ConfluenceRulesEngine.Models.Shared.Enums;
 
 namespace ConfluenceRulesEngine.Models.Effects.Selectors
 {
-    public class ChooseSingleSelector
-        : ISelector<IEnumerable<int>>
+    public class ChooseSingleEvaluator
+        : IEvaluator<IEnumerable<int>>
     {
-        public readonly ISelector<PlayerId> TargetPlayer;
-        public readonly ISelector<IEnumerable<int>> Choices;
+        public readonly IEvaluator<PlayerId> TargetPlayer;
+        public readonly IEvaluator<IEnumerable<int>> Choices;
 
-        public ChooseSingleSelector(ISelector<PlayerId> targetPlayer, ISelector<IEnumerable<int>> choices)
+        public ChooseSingleEvaluator(IEvaluator<PlayerId> targetPlayer, IEvaluator<IEnumerable<int>> choices)
         {
             this.TargetPlayer = targetPlayer;
             this.Choices = choices;

@@ -2,12 +2,12 @@
 
 namespace ConfluenceRulesEngine.Models.Effects.Selectors
 {
-    public class ContextSelector<T>
-        : ISelector<T>
+    public class ContextEvaluator<T>
+        : IEvaluator<T>
     {
         private readonly string key;
 
-        public ContextSelector(string key)
+        public ContextEvaluator(string key)
         {
             this.key = key;
         }

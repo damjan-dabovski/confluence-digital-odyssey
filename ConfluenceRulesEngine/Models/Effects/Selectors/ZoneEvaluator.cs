@@ -6,13 +6,13 @@ using static ConfluenceRulesEngine.Models.Shared.Enums;
 
 namespace ConfluenceRulesEngine.Models.Effects.Selectors
 {
-    public class ZoneSelector
-        : ISelector<IEnumerable<IZone>>
+    public class ZoneEvaluator
+        : IEvaluator<IEnumerable<IZone>>
     {
-        public readonly ISelector<PlayerId> Owner;
+        public readonly IEvaluator<PlayerId> Owner;
         public readonly ZoneType Type;
 
-        public ZoneSelector(ISelector<PlayerId> owner, ZoneType type)
+        public ZoneEvaluator(IEvaluator<PlayerId> owner, ZoneType type)
         {
             this.Owner = owner;
             this.Type = type;

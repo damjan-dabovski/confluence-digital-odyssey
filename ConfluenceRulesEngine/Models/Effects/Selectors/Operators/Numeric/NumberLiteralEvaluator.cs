@@ -1,13 +1,13 @@
 ﻿using ConfluenceRulesEngine.Models.Shared;
 
-namespace ConfluenceRulesEngine.Models.Effects.Selectors.Operators
+namespace ConfluenceRulesEngine.Models.Effects.Selectors.Operators.Numeric
 {
-    public class NumberLiteralSelector
-        : ISelector<uint>
+    public class NumberLiteralEvaluator
+        : IEvaluator<uint>
     {
         private readonly uint Value;
 
-        public NumberLiteralSelector(uint value)
+        public NumberLiteralEvaluator(uint value)
         {
             this.Value = value;
         }

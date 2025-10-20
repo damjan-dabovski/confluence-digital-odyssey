@@ -5,9 +5,9 @@ namespace ConfluenceRulesEngine.Models.Effects.Actions
     public class TrashAction
         : Action
     {
-        public readonly ISelector<IEnumerable<int>> Targets;
+        public readonly IEvaluator<IEnumerable<int>> Targets;
 
-        public TrashAction(ISelector<IEnumerable<int>> targets, Action? continuation = null)
+        public TrashAction(IEvaluator<IEnumerable<int>> targets, Action? continuation = null)
             : base(continuation)
         {
             this.Targets = targets;
