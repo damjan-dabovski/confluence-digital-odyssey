@@ -1,7 +1,7 @@
 ﻿namespace ConsoleApp1
 {
     using ConfulenceRulesEngine.Experiments.Actions;
-    using System;
+    using ConfulenceRulesEngine.Experiments.Selectors;
     using System.Collections.Generic;
     using Action = ConfulenceRulesEngine.Experiments.Actions.Action;
 
@@ -9,7 +9,7 @@
     {
         public Dictionary<int, Card> Cards;
         public Dictionary<string, object> Store;
-        public List<Action> ActionQueue;
+        public List<ISelector<Action>> ActionQueue;
 
         public GameContext(Dictionary<int, Card> cards)
         {

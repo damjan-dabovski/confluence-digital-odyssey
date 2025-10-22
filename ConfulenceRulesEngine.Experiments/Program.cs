@@ -10,6 +10,7 @@
     {
         static ChoiceResolver choiceResolver = new();
         static TrashResolver trashResolver = new();
+        static DrawResolver drawResolver = new();
 
         static void Main(string[] _)
         {
@@ -37,33 +38,63 @@
              *  }
              * }
              */
+            var trashAction = new TrashAction(new CardSelector() { Zone = new(new ContextSelector<PlayerId>("owner"), Enums.ZoneType.Board) });
 
-            var choiceAction = new ChoiceAction(
-                new ContextSelector<PlayerId>("owner"),
-                new CardSelector()
-                {
-                    Zone = new(new ContextSelector<PlayerId>("owner"), Enums.ZoneType.Board),
-                    Type = Enums.CardType.Function
-                },
-                new TrashAction(new ContextSelector<IEnumerable<int>>("choice"))
-            );
+            var drawAction = new DrawAction(2);
 
-            context.ActionQueue.Add(choiceAction);
+            //var choiceAction = new ActionLiteralSelector(new ChoiceAction(
+            //    new ContextSelector<PlayerId>("owner"),
+            //    new CardSelector()
+            //    {
+            //        Zone = new(new ContextSelector<PlayerId>("owner"), Enums.ZoneType.Board),
+            //        Type = Enums.CardType.Function
+            //    },
+            //    trashAction
+            //));
 
-            //while (context.ActionQueue.Count != 0)
+            //Console.WriteLine("Input 'draw' or 'trash' for what action you want to do");
+            //var shouldTrash = Console.ReadLine() switch
             //{
-            //    var next = context.ActionQueue[^1];
-            //    context.ActionQueue.Remove(next);
-            //    Resolve(next, context);
-            //}
+            //    "trash" => true,
+            //    "draw" => false,
+            //    _ => throw new ArgumentException("You didn't write 'draw' or 'trash'. WTF dude?")
+            //};
 
-            Helpers.GetPositionFromCoords(new(Row.P3, Col.S1, true, PlayerId.A));
-            var test= Helpers.GetCoordsFromPosition(3);
+            //var firstCondition = bool.Parse(Console.ReadLine());
+            //var secondCondition = bool.Parse(Console.ReadLine());
+
+            //var branchAction = new BranchSelector<Action>(
+            //    new BooleanLiteralSelector(firstCondition),
+            //    new BranchSelector<Action>(
+            //        new BooleanLiteralSelector(firstCondition && secondCondition),
+            //        new ActionLiteralSelector(trashAction),
+            //        new ActionLiteralSelector(drawAction)),
+            //    new ActionLiteralSelector(drawAction));
+
+            //context.ActionQueue.Add(branchAction);
+
+            var repeatedDrawAction = new RepeatSelector(
+                1,
+                new BranchSelector<Action>(
+                    new BooleanUserInputSelector(),
+                    new ActionLiteralSelector(drawAction),
+                    new ActionLiteralSelector(trashAction)));
+
+            context.ActionQueue.Add(repeatedDrawAction);
+
+            while (context.ActionQueue.Count != 0)
+            {
+                var next = context.ActionQueue[^1];
+                context.ActionQueue.Remove(next);
+                ResolveAction(next, context);
+            }
         }
 
-        static void Resolve(Action action, GameContext context)
+        static void ResolveAction(ISelector<Action> action, GameContext context)
         {
-            switch(action)
+            var actionValue = action.Evaluate(context);
+
+            switch (actionValue)
             {
                 case ChoiceAction ca:
                     choiceResolver.Resolve(ca, context);
@@ -71,9 +102,12 @@
                 case TrashAction ta:
                     trashResolver.Resolve(ta, context);
                     break;
+                case DrawAction da:
+                    drawResolver.Resolve(da, context);
+                    break;
                 default:
                     throw new InvalidOperationException("No resolver for that action type");
-            };
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace ConfulenceRulesEngine.Experiments.Resolvers
 {
     using ConfulenceRulesEngine.Experiments.Actions;
+    using ConfulenceRulesEngine.Experiments.Selectors;
     using ConsoleApp1;
 
     public class ChoiceResolver
@@ -33,7 +34,7 @@
                 context.Store["choice"] = new List<int>() { choices[input] };
             }
 
-            context.ActionQueue.Add(action.Continuation);
+            context.ActionQueue.Add(new ActionLiteralSelector(action.Continuation));
         }
     }
 }
