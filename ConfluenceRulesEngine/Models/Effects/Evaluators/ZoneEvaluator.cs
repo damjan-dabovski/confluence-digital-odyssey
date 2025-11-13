@@ -1,10 +1,10 @@
-﻿using ConfluenceRulesEngine.Helpers;
+﻿using ConfluenceRulesEngine.Models.Effects.Selectors;
 using ConfluenceRulesEngine.Models.Shared;
 using ConfluenceRulesEngine.Models.Zones;
 
 using static ConfluenceRulesEngine.Models.Shared.Enums;
 
-namespace ConfluenceRulesEngine.Models.Effects.Selectors
+namespace ConfluenceRulesEngine.Models.Effects.Evaluators
 {
     public class ZoneEvaluator
         : IEvaluator<IEnumerable<IZone>>
@@ -29,7 +29,6 @@ namespace ConfluenceRulesEngine.Models.Effects.Selectors
                 ZoneType.Hand => [owner.Hand],
                 ZoneType.Deck => [owner.Deck],
                 ZoneType.Trash => [owner.Trash],
-                ZoneType.Board => SelectorHelpers.GetSocketsForPlayer(ownerId, SocketType.Any, context),
                 _ => throw new InvalidOperationException($"Error evaluating ZoneSelector: no zone with enum value: {this.Type}")
             };
         }

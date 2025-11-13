@@ -11,7 +11,7 @@
         public void TakesOnlyGivenAmount()
         {
             // Arrange
-            var context = new GameContext([], [], [], []);
+            var context = new GameContext([], [], [], [], []);
 
             var list = new FakeSelector<IEnumerable<int>>([1, 2, 3, 4, 5]); //TODO use mocks for this instead of fakes?
 

@@ -4,16 +4,20 @@ using ConfluenceRulesEngine.Models.Shared;
 
 namespace ConfluenceRulesEngine.Models.Zones
 {
-    internal class Socket(int Id = 0)
+    public class Socket(int Id = 0)
         : IZone
     {
-        private readonly SingleCardCollection card = new();
+        private readonly SingleCardCollection card = [];
 
-        public ZoneType Type => ZoneType.Board;
+        public ZoneType Type => ZoneType.Socket;
 
         public ICollection<Card> Cards => card;
 
         public int Id = Id;
+
+        public bool IsInterrupt => Id % 2 != 0;
+
+        public bool? InterruptLocked = false;
 
         public void Add(Card card) => this.card.Add(card);
 
