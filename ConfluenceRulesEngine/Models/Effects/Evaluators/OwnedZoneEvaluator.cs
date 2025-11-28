@@ -6,19 +6,19 @@ using static ConfluenceRulesEngine.Models.Shared.Enums;
 
 namespace ConfluenceRulesEngine.Models.Effects.Evaluators
 {
-    public class ZoneEvaluator
-        : IEvaluator<IEnumerable<IZone>>
+    public class OwnedZoneEvaluator
+        : IEvaluator<IZone>
     {
         public readonly IEvaluator<PlayerId> Owner;
         public readonly ZoneType Type;
 
-        public ZoneEvaluator(IEvaluator<PlayerId> owner, ZoneType type)
+        public OwnedZoneEvaluator(IEvaluator<PlayerId> owner, ZoneType type)
         {
             this.Owner = owner;
             this.Type = type;
         }
 
-        public IEnumerable<IZone> Evaluate(GameContext context)
+        public IZone Evaluate(GameContext context)
         {
             var ownerId = this.Owner.Evaluate(context);
 
@@ -26,10 +26,10 @@ namespace ConfluenceRulesEngine.Models.Effects.Evaluators
 
             return this.Type switch
             {
-                ZoneType.Hand => [owner.Hand],
-                ZoneType.Deck => [owner.Deck],
-                ZoneType.Trash => [owner.Trash],
-                _ => throw new InvalidOperationException($"Error evaluating ZoneSelector: no zone with enum value: {this.Type}")
+                ZoneType.Hand => owner.Hand,
+                ZoneType.Deck => owner.Deck,
+                ZoneType.Trash => owner.Trash,
+                _ => throw new InvalidOperationException($"ZoneEvaluator error: {this.Type} is not an owned zone (use a SocketEvaluator for sockets)")
             };
         }
     }

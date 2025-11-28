@@ -5,7 +5,7 @@ using static ConfluenceRulesEngine.Models.Shared.Enums;
 namespace ConfluenceRulesEngine.Models.Effects.Selectors
 {
     public class ChooseSingleEvaluator
-        : IEvaluator<IEnumerable<int>>
+        : IEvaluator<int?>
     {
         public readonly IEvaluator<PlayerId> TargetPlayer;
         public readonly IEvaluator<IEnumerable<int>> Choices;
@@ -16,13 +16,15 @@ namespace ConfluenceRulesEngine.Models.Effects.Selectors
             this.Choices = choices;
         }
 
-        public IEnumerable<int> Evaluate(GameContext context)
+        public int? Evaluate(GameContext context)
         {
             var choices = this.Choices.Evaluate(context)?.ToList();
 
             if (choices is null || choices.Count == 0)
             {
-                return [];
+                return null; // we're returning no value instead of any valid int, because technically
+                            // nothing *should* be valid in this case; if this evaluated to a list instead
+                            // (which it did, no clue why though), it would return an empty list here
             }
 
             var targetPlayer = TargetPlayer.Evaluate(context);
@@ -39,11 +41,11 @@ namespace ConfluenceRulesEngine.Models.Effects.Selectors
 
             if (!int.TryParse(Console.ReadLine(), out var input))
             {
-                return [];
+                return null;
             }
             else
             {
-                return ([choices[input]]);
+                return (choices[input]);
             }
         }
     }
