@@ -1,0 +1,68 @@
+﻿namespace ConfluenceRulesEngine.Test.Resolvers
+{
+    using ConfluenceRulesEngine.Models.Core;
+    using ConfluenceRulesEngine.Models.Effects.Actions;
+    using ConfluenceRulesEngine.Models.Effects.Evaluators;
+    using ConfluenceRulesEngine.Models.Effects.Evaluators.Helpers;
+    using ConfluenceRulesEngine.Models.Effects.Resolvers;
+    using ConfluenceRulesEngine.Models.Effects.Selectors;
+    using ConfluenceRulesEngine.Models.Shared;
+    using ConfluenceRulesEngine.Models.Zones;
+    using ConfluenceRulesEngine.Test.TestHelpers.Evaluators;
+    using static ConfluenceRulesEngine.Models.Shared.Enums;
+
+    [TestClass]
+    public class InstallResolverTest
+    {
+        [TestMethod]
+        public void InstallsCardInSocket()
+        {
+            // Arrange
+            var sockets = new List<Socket>();
+
+            for (int i = 0; i < 24; i++)
+            {
+                sockets.Add(new(i));
+            }
+
+            var player = new Player("A", new Deck([]));
+
+            var card = new Card(1, 1, "TestCard", CardType.Function, [], PlayerId.A, player.Hand);
+
+            player.Hand.Cards.Add(card);
+
+            var cardObjects = new Dictionary<int, Card>
+            {
+                { 1, card }
+            };
+
+            var context = new GameContext(
+                sockets,
+                cardObjects,
+                new() { { PlayerId.A, player } },
+                [],
+                []);
+
+            var resolver = new InstallResolver();
+
+            var playerIdEvaluator = new LiteralEvaluator<PlayerId>(PlayerId.A);
+
+            var cardsFromHandEvaluator = new CardsEvaluator(new OwnedZoneEvaluator(playerIdEvaluator, ZoneType.Hand));
+
+            var chosenCardEvaluator = new ChooseSingleEvaluator(playerIdEvaluator, cardsFromHandEvaluator);
+
+            var coordsFilterEvaluator = new LiteralEvaluator<CoordsFilter>(new CoordsFilter(Row.P1, Col.S1, false, PlayerId.A));
+
+            var action = new InstallAction(
+                chosenCardEvaluator,
+                playerIdEvaluator,
+     coordsFilterEvaluator);
+
+            // Act
+            resolver.Resolve(action, new ResolutionContext(PlayerId.A, Row.P1, Col.S1), context);
+
+            // Assert
+            Assert.IsTrue(context.Sockets[0].Cards.All(c => c.ObjectId == card.ObjectId));
+        }
+    }
+}

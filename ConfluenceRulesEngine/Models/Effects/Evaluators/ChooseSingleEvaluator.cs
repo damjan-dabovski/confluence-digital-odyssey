@@ -47,6 +47,9 @@ namespace ConfluenceRulesEngine.Models.Effects.Selectors
             {
                 return (choices[input]);
             }
+
+            // TODO!IMPORTANT this needs to use an abstract comm service to enable any kind of unit testing
+            // to be performed on things that would require player input at some point
         }
     }
 }

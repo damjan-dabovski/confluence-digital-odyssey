@@ -5,12 +5,12 @@ using ConfluenceRulesEngine.Models.Shared;
 
 namespace ConfluenceRulesEngine.Models.Effects.Evaluators
 {
-    public class SocketEvaluator
+    public class SocketsEvaluator
         : IEvaluator<IEnumerable<int>>
     {
         private readonly IEvaluator<CoordsFilter> Coords;
 
-        public SocketEvaluator(IEvaluator<CoordsFilter> coords)
+        public SocketsEvaluator(IEvaluator<CoordsFilter> coords)
         {
             this.Coords = coords;
         }

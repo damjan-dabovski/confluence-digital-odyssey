@@ -18,7 +18,7 @@ namespace ConfluenceRulesEngine.Helpers
         A: 0[1]
          */
 
-        public static IEnumerable<Socket> FilterSocketsByCoords(IEnumerable<Socket> sockets, CoordsFilter coords)
+        public static List<Socket> FilterSocketsByCoords(IEnumerable<Socket> sockets, CoordsFilter coords)
         {
             var ret = sockets;
 
@@ -44,10 +44,10 @@ namespace ConfluenceRulesEngine.Helpers
 
             if (coords.IsInterrupt is bool isInterrupt)
             {
-                ret = ret.Where(s => s.IsInterrupt);
+                ret = ret.Where(s => s.IsInterrupt == isInterrupt);
             }
 
-            return ret;
+            return ret.ToList();
         }
 
         private static bool IsSocketInRow(this Socket socket, Row row)

@@ -25,14 +25,9 @@ namespace ConfluenceRulesEngine.Models.Shared
 
         public void Add(Card item)
         {
-            if (this.Value is not null)
-            {
-                this.Value = item;
-            }
-            else
-            {
-                throw new InvalidOperationException("There is already an item in that socket.");
-            }
+            this.Value = this.Value is null
+                ? item
+                : throw new InvalidOperationException("There is already an item in that socket.");
         }
 
         public void Clear() => this.Value = null;
