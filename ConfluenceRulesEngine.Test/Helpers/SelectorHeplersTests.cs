@@ -1,11 +1,7 @@
-﻿namespace ConfluenceRulesEngine.Test.Helpers
-{
-    using ConfluenceRulesEngine.Helpers;
-    using ConfluenceRulesEngine.Models.Shared;
-    using ConfluenceRulesEngine.Models.Zones;
-    using System.Threading.Tasks;
-    using static ConfluenceRulesEngine.Models.Shared.Enums;
+﻿using static ConfluenceRulesEngine.Models.Shared.Enums;
 
+namespace ConfluenceRulesEngine.Test.Helpers
+{
     public class SelectorHeplersTests
     {
         [TestClass]

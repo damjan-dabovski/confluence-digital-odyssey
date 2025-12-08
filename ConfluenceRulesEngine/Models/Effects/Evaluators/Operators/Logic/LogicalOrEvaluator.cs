@@ -1,6 +1,6 @@
 ﻿using ConfluenceRulesEngine.Models.Shared;
 
-namespace ConfluenceRulesEngine.Models.Effects.Selectors.Operators.Logic
+namespace ConfluenceRulesEngine.Models.Effects.Evaluators.Operators.Logic
 {
     public class LogicalOrEvaluator
         : IEvaluator<bool>

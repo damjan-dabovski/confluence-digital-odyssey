@@ -1,16 +1,16 @@
-﻿namespace ConfluenceRulesEngine.Test.Resolvers
-{
-    using ConfluenceRulesEngine.Models.Core;
-    using ConfluenceRulesEngine.Models.Effects.Actions;
-    using ConfluenceRulesEngine.Models.Effects.Evaluators;
-    using ConfluenceRulesEngine.Models.Effects.Evaluators.Helpers;
-    using ConfluenceRulesEngine.Models.Effects.Resolvers;
-    using ConfluenceRulesEngine.Models.Effects.Selectors;
-    using ConfluenceRulesEngine.Models.Shared;
-    using ConfluenceRulesEngine.Models.Zones;
-    using ConfluenceRulesEngine.Test.TestHelpers.Evaluators;
-    using static ConfluenceRulesEngine.Models.Shared.Enums;
+﻿using ConfluenceRulesEngine.Models.Core;
+using ConfluenceRulesEngine.Models.Effects.Actions;
+using ConfluenceRulesEngine.Models.Effects.Evaluators;
+using ConfluenceRulesEngine.Models.Effects.Evaluators.Helpers;
+using ConfluenceRulesEngine.Models.Effects.Resolvers;
+using ConfluenceRulesEngine.Models.Shared;
+using ConfluenceRulesEngine.Models.Zones;
+using ConfluenceRulesEngine.Test.TestHelpers.Evaluators;
 
+using static ConfluenceRulesEngine.Models.Shared.Enums;
+
+namespace ConfluenceRulesEngine.Test.Resolvers
+{
     [TestClass]
     public class InstallResolverTest
     {
@@ -20,7 +20,7 @@
             // Arrange
             var sockets = new List<Socket>();
 
-            for (int i = 0; i < 24; i++)
+            for (var i = 0; i < 24; i++)
             {
                 sockets.Add(new(i));
             }
@@ -47,9 +47,9 @@
 
             var playerIdEvaluator = new LiteralEvaluator<PlayerId>(PlayerId.A);
 
-            var cardsFromHandEvaluator = new CardsEvaluator(new OwnedZoneEvaluator(playerIdEvaluator, ZoneType.Hand));
+            var cardsFromHandEvaluator = new NonInstalledCardsEvaluator(new OwnedZoneEvaluator(playerIdEvaluator, ZoneType.Hand));
 
-            var chosenCardEvaluator = new ChooseSingleEvaluator(playerIdEvaluator, cardsFromHandEvaluator);
+            var chosenCardEvaluator = new ChooseSingleEvaluator<CardId>(playerIdEvaluator, cardsFromHandEvaluator);
 
             var coordsFilterEvaluator = new LiteralEvaluator<CoordsFilter>(new CoordsFilter(Row.P1, Col.S1, false, PlayerId.A));
 

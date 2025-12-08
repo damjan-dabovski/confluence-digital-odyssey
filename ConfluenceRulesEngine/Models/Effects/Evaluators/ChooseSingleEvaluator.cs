@@ -2,27 +2,27 @@
 
 using static ConfluenceRulesEngine.Models.Shared.Enums;
 
-namespace ConfluenceRulesEngine.Models.Effects.Selectors
+namespace ConfluenceRulesEngine.Models.Effects.Evaluators
 {
-    public class ChooseSingleEvaluator
-        : IEvaluator<int?>
+    public class ChooseSingleEvaluator<T>
+        : IEvaluator<T?> where T:class
     {
         public readonly IEvaluator<PlayerId> TargetPlayer;
-        public readonly IEvaluator<IEnumerable<int>> Choices;
+        public readonly IEvaluator<IEnumerable<T>> Choices;
 
-        public ChooseSingleEvaluator(IEvaluator<PlayerId> targetPlayer, IEvaluator<IEnumerable<int>> choices)
+        public ChooseSingleEvaluator(IEvaluator<PlayerId> targetPlayer, IEvaluator<IEnumerable<T>> choices)
         {
             this.TargetPlayer = targetPlayer;
             this.Choices = choices;
         }
 
-        public int? Evaluate(GameContext context)
+        public T? Evaluate(GameContext context)
         {
             var choices = this.Choices.Evaluate(context)?.ToList();
 
             if (choices is null || choices.Count == 0)
             {
-                return null; // we're returning no value instead of any valid int, because technically
+                return default; // we're returning no value instead of any valid int, because technically
                             // nothing *should* be valid in this case; if this evaluated to a list instead
                             // (which it did, no clue why though), it would return an empty list here
             }
@@ -41,11 +41,11 @@ namespace ConfluenceRulesEngine.Models.Effects.Selectors
 
             if (!int.TryParse(Console.ReadLine(), out var input))
             {
-                return null;
+                return default;
             }
             else
             {
-                return (choices[input]);
+                return choices[input];
             }
 
             // TODO!IMPORTANT this needs to use an abstract comm service to enable any kind of unit testing

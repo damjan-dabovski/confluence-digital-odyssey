@@ -1,6 +1,6 @@
 ﻿namespace ConfluenceRulesEngine.Test.TestHelpers.Evaluators
 {
-    using ConfluenceRulesEngine.Models.Effects.Selectors;
+    using ConfluenceRulesEngine.Models.Effects.Evaluators;
     using ConfluenceRulesEngine.Models.Shared;
 
     public class LiteralEvaluator<T>

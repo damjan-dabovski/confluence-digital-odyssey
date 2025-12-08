@@ -2,7 +2,7 @@
 
 using static ConfluenceRulesEngine.Models.Shared.Enums;
 
-namespace ConfluenceRulesEngine.Models.Effects.Selectors
+namespace ConfluenceRulesEngine.Models.Effects.Evaluators.Operators
 {
     public class OwnerEvaluator
         : IEvaluator<PlayerId>

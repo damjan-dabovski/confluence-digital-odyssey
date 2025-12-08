@@ -1,5 +1,5 @@
 ﻿using ConfluenceRulesEngine.Models.Core;
-using ConfluenceRulesEngine.Models.Effects.Selectors;
+using ConfluenceRulesEngine.Models.Effects.Evaluators;
 using ConfluenceRulesEngine.Models.Zones;
 
 using static ConfluenceRulesEngine.Models.Shared.Enums;

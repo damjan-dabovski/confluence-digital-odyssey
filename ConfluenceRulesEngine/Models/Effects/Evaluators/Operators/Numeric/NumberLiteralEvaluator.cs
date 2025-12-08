@@ -1,6 +1,6 @@
 ﻿using ConfluenceRulesEngine.Models.Shared;
 
-namespace ConfluenceRulesEngine.Models.Effects.Selectors.Operators.Numeric
+namespace ConfluenceRulesEngine.Models.Effects.Evaluators.Operators.Numeric
 {
     public class NumberLiteralEvaluator
         : IEvaluator<uint>

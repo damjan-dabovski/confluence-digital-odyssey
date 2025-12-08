@@ -1,6 +1,6 @@
 ﻿using ConfluenceRulesEngine.Models.Shared;
 
-namespace ConfluenceRulesEngine.Models.Effects.Selectors
+namespace ConfluenceRulesEngine.Models.Effects.Evaluators
 {
     public interface IEvaluator<T>
     {

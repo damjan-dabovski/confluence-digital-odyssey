@@ -2,7 +2,7 @@
 
 using static ConfluenceRulesEngine.Models.Shared.Enums;
 
-namespace ConfluenceRulesEngine.Models.Effects.Selectors.Operators.Numeric
+namespace ConfluenceRulesEngine.Models.Effects.Evaluators.Operators.Numeric
 {
     public class NumberArithmeticEvaluator
         : IEvaluator<int>

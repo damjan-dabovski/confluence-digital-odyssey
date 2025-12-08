@@ -1,4 +1,4 @@
-﻿using ConfluenceRulesEngine.Models.Effects.Selectors;
+﻿using ConfluenceRulesEngine.Models.Effects.Evaluators.Helpers;
 using ConfluenceRulesEngine.Models.Shared;
 using ConfluenceRulesEngine.Models.Zones;
 
@@ -6,19 +6,19 @@ using static ConfluenceRulesEngine.Models.Shared.Enums;
 
 namespace ConfluenceRulesEngine.Models.Effects.Evaluators
 {
-    public class CardsEvaluator
-        : IEvaluator<IEnumerable<int>>
+    public class NonInstalledCardsEvaluator
+        : IEvaluator<IEnumerable<CardId>>
     {
         public readonly CardType? Type;
         public readonly IEvaluator<IZone> Zone;
 
-        public CardsEvaluator(IEvaluator<IZone> zone, CardType? type = null)
+        public NonInstalledCardsEvaluator(IEvaluator<IZone> zone, CardType? type = null)
         {
             this.Type = type;
             this.Zone = zone;
         }
 
-        public IEnumerable<int> Evaluate(GameContext context)
+        public IEnumerable<CardId> Evaluate(GameContext context)
         {
             var zone = this.Zone.Evaluate(context);
 
@@ -29,7 +29,7 @@ namespace ConfluenceRulesEngine.Models.Effects.Evaluators
                 cards = [.. cards.Where(card => card.Type == this.Type)];
             }
 
-            return cards.Select(c => c.ObjectId);
+            return cards.Select(c => new CardId(c.ObjectId));
         }
     }
 }

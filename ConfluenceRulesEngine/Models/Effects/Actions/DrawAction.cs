@@ -1,11 +1,13 @@
-﻿namespace ConfluenceRulesEngine.Models.Effects.Actions
+﻿using ConfluenceRulesEngine.Models.Effects.Evaluators.Helpers;
+
+namespace ConfluenceRulesEngine.Models.Effects.Actions
 {
     public class DrawAction
         : Action
     {
-        public readonly IEnumerable<int> Targets;
+        public readonly IEnumerable<CardId> Targets;
 
-        public DrawAction(IEnumerable<int> targets, Action? continuation = null)
+        public DrawAction(IEnumerable<CardId> targets, Action? continuation = null)
             : base(continuation)
         {
             this.Targets = targets;

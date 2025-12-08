@@ -1,9 +1,9 @@
-﻿namespace ConfluenceRulesEngine.Test.Selectors.Operators
-{
-    using ConfluenceRulesEngine.Models.Effects.Selectors.Operators;
-    using ConfluenceRulesEngine.Models.Shared;
-    using ConfluenceRulesEngine.Test.TestHelpers.Fakes;
+﻿using ConfluenceRulesEngine.Models.Effects.Evaluators.Operators.List;
+using ConfluenceRulesEngine.Models.Shared;
+using ConfluenceRulesEngine.Test.TestHelpers.Fakes;
 
+namespace ConfluenceRulesEngine.Test.Selectors.Operators
+{
     [TestClass]
     public class TakeOperatorTest
     {

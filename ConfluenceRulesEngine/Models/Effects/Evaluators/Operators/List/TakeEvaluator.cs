@@ -1,6 +1,6 @@
 ﻿using ConfluenceRulesEngine.Models.Shared;
 
-namespace ConfluenceRulesEngine.Models.Effects.Selectors.Operators
+namespace ConfluenceRulesEngine.Models.Effects.Evaluators.Operators.List
 {
     public class TakeEvaluator<T>
         : IEvaluator<IEnumerable<T>>
