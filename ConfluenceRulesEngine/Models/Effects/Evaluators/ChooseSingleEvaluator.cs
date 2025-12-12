@@ -22,34 +22,16 @@ namespace ConfluenceRulesEngine.Models.Effects.Evaluators
 
             if (choices is null || choices.Count == 0)
             {
-                return default; // we're returning no value instead of any valid int, because technically
-                            // nothing *should* be valid in this case; if this evaluated to a list instead
-                            // (which it did, no clue why though), it would return an empty list here
-            }
-
-            var targetPlayer = TargetPlayer.Evaluate(context);
-
-            // TODO this is just placeholder code until a more abstract communication service or similar
-            // is implemented for managing user input (also consider that it needs to be potentially used by AI players)
-
-            Console.WriteLine($"Player {targetPlayer} choose from:");
-
-            foreach (var (choice, index) in choices.Select((c, i) => (c, i)))
-            {
-                Console.WriteLine($"{index}: {choice}");
-            }
-
-            if (!int.TryParse(Console.ReadLine(), out var input))
-            {
                 return default;
             }
-            else
-            {
-                return choices[input];
-            }
 
-            // TODO!IMPORTANT this needs to use an abstract comm service to enable any kind of unit testing
-            // to be performed on things that would require player input at some point
+            var targetPlayerId = TargetPlayer.Evaluate(context);
+
+            var targetPlayer = context.Players[targetPlayerId];
+
+            int input = targetPlayer.CommService.GetInput();
+
+            return choices[input];
         }
     }
 }

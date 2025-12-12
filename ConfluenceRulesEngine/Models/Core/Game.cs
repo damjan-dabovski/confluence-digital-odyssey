@@ -21,7 +21,7 @@ namespace ConfluenceRulesEngine.Models.Core
 
         private readonly Socket[] board = new Socket[24];
 
-        public Game(Guid Id, Dictionary<int, CardInitModel> CardPool, PlayerInitModel ActivePlayer, PlayerInitModel InactivePlayer)
+        public Game(Guid Id, Dictionary<int, CardInitModel> CardPool, PlayerInitModel activePlayer, PlayerInitModel inactivePlayer)
         {
             this.Id = Id;
 
@@ -29,17 +29,14 @@ namespace ConfluenceRulesEngine.Models.Core
 
             Players =
             [
-                new(ActivePlayer.Name, MapDeckFromCardIds(PlayerId.A, ActivePlayer.CardIds, CardPool)),
-                new(InactivePlayer.Name, MapDeckFromCardIds(PlayerId.B, ActivePlayer.CardIds, CardPool))
+                new(activePlayer.Name, MapDeckFromCardIds(PlayerId.A, activePlayer.CardIds, CardPool), activePlayer.CommService),
+                new(inactivePlayer.Name, MapDeckFromCardIds(PlayerId.B, activePlayer.CardIds, CardPool), inactivePlayer.CommService)
             ];
 
             CardEffects = [];
         }
 
-        public string Serialize()
-        {
-            return JsonSerializer.Serialize(this);
-        }
+        public string Serialize() => JsonSerializer.Serialize(this);
 
         private static Deck MapDeckFromCardIds(PlayerId ownerId, IEnumerable<int> cardIds, Dictionary<int, CardInitModel> CardPool)
         {

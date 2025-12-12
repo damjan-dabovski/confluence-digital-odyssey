@@ -5,8 +5,9 @@ using ConfluenceRulesEngine.Models.Effects.Evaluators.Helpers;
 using ConfluenceRulesEngine.Models.Effects.Resolvers;
 using ConfluenceRulesEngine.Models.Shared;
 using ConfluenceRulesEngine.Models.Zones;
+using ConfluenceRulesEngine.Services;
 using ConfluenceRulesEngine.Test.TestHelpers.Evaluators;
-
+using Moq;
 using static ConfluenceRulesEngine.Models.Shared.Enums;
 
 namespace ConfluenceRulesEngine.Test.Resolvers
@@ -25,7 +26,12 @@ namespace ConfluenceRulesEngine.Test.Resolvers
                 sockets.Add(new(i));
             }
 
-            var player = new Player("A", new Deck([]));
+            var mockCommService = new Mock<ICommService>();
+
+            mockCommService.Setup(x => x.GetInput())
+                .Returns(0);
+
+            var player = new Player("A", new Deck([]), mockCommService.Object);
 
             var card = new Card(1, 1, "TestCard", CardType.Function, [], PlayerId.A, player.Hand);
 

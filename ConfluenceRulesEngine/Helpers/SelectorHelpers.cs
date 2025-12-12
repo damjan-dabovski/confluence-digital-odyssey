@@ -54,9 +54,9 @@ namespace ConfluenceRulesEngine.Helpers
         {
             return row switch
             {
-                Row.P1 => socket.Id is < 2 or (> 11 and < 14),
-                Row.P2 => socket.Id is (> 1 and < 6) or (> 13 and < 18),
-                Row.P3 => socket.Id is (> 5 and < 12) or (> 17),
+                Row.P1 => socket.ObjectId is < 2 or (> 11 and < 14),
+                Row.P2 => socket.ObjectId is (> 1 and < 6) or (> 13 and < 18),
+                Row.P3 => socket.ObjectId is (> 5 and < 12) or (> 17),
                 _ => throw new InvalidOperationException($"Invalid row value {row}")
             };
         }
@@ -65,9 +65,9 @@ namespace ConfluenceRulesEngine.Helpers
         {
             return col switch
             {
-                Col.S1 => socket.Id is 0 or 1 or 2 or 3 or 6 or 7 or 12 or 13 or 14 or 15 or 18 or 19,
-                Col.S2 => socket.Id is 4 or 5 or 8 or 9 or 16 or 17 or 20 or 21,
-                Col.S3 => socket.Id is 10 or 11 or 22 or 23,
+                Col.S1 => socket.ObjectId is 0 or 1 or 2 or 3 or 6 or 7 or 12 or 13 or 14 or 15 or 18 or 19,
+                Col.S2 => socket.ObjectId is 4 or 5 or 8 or 9 or 16 or 17 or 20 or 21,
+                Col.S3 => socket.ObjectId is 10 or 11 or 22 or 23,
                 _ => throw new InvalidOperationException($"Invalid col value {col}")
             };
         }

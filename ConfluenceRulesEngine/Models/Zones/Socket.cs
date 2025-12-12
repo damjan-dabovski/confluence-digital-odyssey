@@ -1,23 +1,31 @@
 ﻿
 using ConfluenceRulesEngine.Models.Core;
+using ConfluenceRulesEngine.Models.Effects.Evaluators.Helpers;
 using ConfluenceRulesEngine.Models.Shared;
 
 namespace ConfluenceRulesEngine.Models.Zones
 {
-    public class Socket(int Id = 0)
-        : IZone
+    public class Socket
+        : IZone, IHasObjectId
     {
         private readonly SingleCardCollection card = [];
+
+        private readonly SocketId objectId;
+
+        public Socket(int objectId)
+        {
+            this.objectId = new(objectId);
+        }
+
+        public int ObjectId => objectId;
 
         public ZoneType Type => ZoneType.Socket;
 
         public ICollection<Card> Cards => card;
 
-        public int Id = Id;
+        public bool IsInterrupt => objectId % 2 != 0;
 
-        public bool IsInterrupt => Id % 2 != 0;
-
-        public bool? InterruptLocked = false;
+        public bool? InterruptLocked = null;
 
         public void Add(Card card) => this.card.Add(card);
 
@@ -26,6 +34,11 @@ namespace ConfluenceRulesEngine.Models.Zones
             if (this.card.Value is Card c)
             {
                 _ = this.card.Remove(c);
+            }
+
+            if (this.IsInterrupt)
+            {
+                this.InterruptLocked = null;
             }
         }
     }
