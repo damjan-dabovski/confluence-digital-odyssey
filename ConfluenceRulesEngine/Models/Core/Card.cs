@@ -8,7 +8,7 @@ using static ConfluenceRulesEngine.Models.Shared.Enums;
 namespace ConfluenceRulesEngine.Models.Core
 {
     public class Card
-        : IHasObjectId
+        : IChoosable
     {
         private readonly int objectId;
 
@@ -16,20 +16,22 @@ namespace ConfluenceRulesEngine.Models.Core
         public readonly string Name;
         public readonly CardType Type;
         public readonly IEnumerable<CardEffect> CardEffects;
-        public readonly PlayerId OwnerId;
+        public readonly Player Owner;
         public IZone CurrentZone;
 
         public int ObjectId => objectId;
 
-        public Card(int cardId, int objectId, string name, CardType type, IEnumerable<CardEffect> cardEffects, PlayerId ownerId, IZone currentZone)
+        public Card(int cardId, int objectId, string name, CardType type, IEnumerable<CardEffect> cardEffects, Player owner, IZone currentZone)
         {
             this.CardId = new(cardId);
             this.objectId = objectId;
             this.Name = name;
             this.Type = type;
             this.CardEffects = cardEffects;
-            this.OwnerId = ownerId;
+            this.Owner = owner;
             this.CurrentZone = currentZone;
         }
+
+        public string ToChoiceDisplayString() => $"[{this.ObjectId}]: {this.Name}";
     }
 }

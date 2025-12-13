@@ -11,22 +11,25 @@ namespace ConfluenceRulesEngine.Models.Effects.Resolvers
     {
         public void Resolve(InstallAction action, ResolutionContext resolutionContext, GameContext gameContext)
         {
-            var chosenSocketEvaluator = new ChooseSingleEvaluator<Socket>(action.TargetPlayer, new SocketsEvaluator(action.AllowedSlots));
+            var chosenSocketEvaluator = new ChooseSingleEvaluator<Socket>(
+                action.TargetPlayer,
+                new SocketsEvaluator(action.AllowedSlots));
 
             if (chosenSocketEvaluator.Evaluate(gameContext) is Socket chosenSocket)
             {
                 // TODO handle trashing of already-installed cards here
 
-                var targetCardId = action.ChosenCard.Evaluate(gameContext);
+                var targetCard = action.ChosenCard.Evaluate(gameContext);
 
-                if (targetCardId is null)
+                if (targetCard is null)
                 {
                     return;
                 }
 
-                var targetCard = gameContext.CardObjects[targetCardId];
-
-                ActionHelpers.Move(targetCard, targetCard.CurrentZone, chosenSocket);
+                ActionHelpers.Move(
+                    targetCard,
+                    targetCard.CurrentZone,
+                    chosenSocket);
             }
         }
     }

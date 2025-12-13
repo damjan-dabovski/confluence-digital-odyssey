@@ -1,22 +1,18 @@
-﻿using ConfluenceRulesEngine.Models.Shared;
-
-using static ConfluenceRulesEngine.Models.Shared.Enums;
+﻿using ConfluenceRulesEngine.Models.Core;
+using ConfluenceRulesEngine.Models.Shared;
 
 namespace ConfluenceRulesEngine.Models.Effects.Evaluators.Operators
 {
     public class OwnerEvaluator
-        : IEvaluator<PlayerId>
+        : IEvaluator<Player>
     {
-        private readonly int CardId;
+        private readonly Card Card;
 
-        public OwnerEvaluator(int cardId)
+        public OwnerEvaluator(Card card)
         {
-            CardId = cardId;
+            this.Card = card;
         }
 
-        public PlayerId Evaluate(GameContext context)
-        {
-            return context.CardObjects[CardId].OwnerId;
-        }
+        public Player Evaluate(GameContext context) => Card.Owner;
     }
 }

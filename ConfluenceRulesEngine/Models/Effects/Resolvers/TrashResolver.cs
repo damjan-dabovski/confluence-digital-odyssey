@@ -9,15 +9,15 @@ namespace ConfluenceRulesEngine.Models.Effects.Resolvers
     {
         public void Resolve(TrashAction action, ResolutionContext resolutionContext, GameContext gameContext)
         {
-            foreach (var targetId in action.Targets.Evaluate(gameContext))
+            foreach (var targetCard in action.Targets.Evaluate(gameContext))
             {
                 // TODO handle prompting users for ordering the cards when multiple are
                 // trashed at once (incl. splitting the card processing in APNAP order)
 
-                var card = gameContext.CardObjects[targetId];
-                var owner = gameContext.Players[card.OwnerId];
-
-                ActionHelpers.Move(card, card.CurrentZone, owner.Trash);
+                ActionHelpers.Move(
+                    targetCard,
+                    targetCard.CurrentZone,
+                    targetCard.Owner.Trash);
             }
         }
     }

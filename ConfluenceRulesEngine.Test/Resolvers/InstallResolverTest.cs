@@ -33,7 +33,7 @@ namespace ConfluenceRulesEngine.Test.Resolvers
 
             var player = new Player("A", new Deck([]), mockCommService.Object);
 
-            var card = new Card(1, 1, "TestCard", CardType.Function, [], PlayerId.A, player.Hand);
+            var card = new Card(1, 1, "TestCard", CardType.Function, [], player, player.Hand);
 
             player.Hand.Cards.Add(card);
 
@@ -44,18 +44,18 @@ namespace ConfluenceRulesEngine.Test.Resolvers
 
             var context = new GameContext(
                 sockets,
-                cardObjects,
-                new() { { PlayerId.A, player } },
+                //cardObjects,
+                //new() { { PlayerId.A, player } },
                 [],
                 []);
 
             var resolver = new InstallResolver();
 
-            var playerIdEvaluator = new LiteralEvaluator<PlayerId>(PlayerId.A);
+            var playerIdEvaluator = new LiteralEvaluator<Player>(player);
 
             var cardsFromHandEvaluator = new NonInstalledCardsEvaluator(new OwnedZoneEvaluator(playerIdEvaluator, ZoneType.Hand));
 
-            var chosenCardEvaluator = new ChooseSingleEvaluator<CardId>(playerIdEvaluator, cardsFromHandEvaluator);
+            var chosenCardEvaluator = new ChooseSingleEvaluator<Card>(playerIdEvaluator, cardsFromHandEvaluator);
 
             var coordsFilterEvaluator = new LiteralEvaluator<CoordsFilter>(new CoordsFilter(Row.P1, Col.S1, false, PlayerId.A));
 

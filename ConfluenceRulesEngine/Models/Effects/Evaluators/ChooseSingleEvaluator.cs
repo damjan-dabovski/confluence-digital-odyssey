@@ -1,22 +1,23 @@
-﻿using ConfluenceRulesEngine.Models.Shared;
+﻿using ConfluenceRulesEngine.Models.Core;
+using ConfluenceRulesEngine.Models.Shared;
 
 using static ConfluenceRulesEngine.Models.Shared.Enums;
 
 namespace ConfluenceRulesEngine.Models.Effects.Evaluators
 {
-    public class ChooseSingleEvaluator<T>
-        : IEvaluator<T?> where T:class
+    public class ChooseSingleEvaluator<TObject>
+        : IEvaluator<TObject?> where TObject : IChoosable
     {
-        public readonly IEvaluator<PlayerId> TargetPlayer;
-        public readonly IEvaluator<IEnumerable<T>> Choices;
+        public readonly IEvaluator<Player> TargetPlayer;
+        public readonly IEvaluator<IEnumerable<TObject>> Choices;
 
-        public ChooseSingleEvaluator(IEvaluator<PlayerId> targetPlayer, IEvaluator<IEnumerable<T>> choices)
+        public ChooseSingleEvaluator(IEvaluator<Player> targetPlayer, IEvaluator<IEnumerable<TObject>> choices)
         {
             this.TargetPlayer = targetPlayer;
             this.Choices = choices;
         }
 
-        public T? Evaluate(GameContext context)
+        public TObject? Evaluate(GameContext context)
         {
             var choices = this.Choices.Evaluate(context)?.ToList();
 
@@ -25,11 +26,18 @@ namespace ConfluenceRulesEngine.Models.Effects.Evaluators
                 return default;
             }
 
-            var targetPlayerId = TargetPlayer.Evaluate(context);
+            var targetPlayer = TargetPlayer.Evaluate(context);
 
-            var targetPlayer = context.Players[targetPlayerId];
+            var choicesMessage = "";
 
-            int input = targetPlayer.CommService.GetInput();
+            for (var i = 0; i < choices.Count; i++)
+            {
+                choicesMessage += $"{i}: {choices[i].ToChoiceDisplayString()}";
+            }
+                
+            targetPlayer.CommService.SendMessage(choicesMessage);
+
+            var input = targetPlayer.CommService.GetInput();
 
             return choices[input];
         }

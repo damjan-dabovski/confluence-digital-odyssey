@@ -29,8 +29,8 @@ namespace ConfluenceRulesEngine.Models.Core
 
             Players =
             [
-                new(activePlayer.Name, MapDeckFromCardIds(PlayerId.A, activePlayer.CardIds, CardPool), activePlayer.CommService),
-                new(inactivePlayer.Name, MapDeckFromCardIds(PlayerId.B, activePlayer.CardIds, CardPool), inactivePlayer.CommService)
+                new(activePlayer.Name, MapDeckFromCardIds(activePlayer.CardIds, CardPool), activePlayer.CommService),
+                new(inactivePlayer.Name, MapDeckFromCardIds(activePlayer.CardIds, CardPool), inactivePlayer.CommService)
             ];
 
             CardEffects = [];
@@ -38,7 +38,7 @@ namespace ConfluenceRulesEngine.Models.Core
 
         public string Serialize() => JsonSerializer.Serialize(this);
 
-        private static Deck MapDeckFromCardIds(PlayerId ownerId, IEnumerable<int> cardIds, Dictionary<int, CardInitModel> CardPool)
+        private static Deck MapDeckFromCardIds(IEnumerable<int> cardIds, Dictionary<int, CardInitModel> CardPool)
         {
             var mappedCards = cardIds.Select((id, index) => new Card(
                 id,
@@ -46,7 +46,7 @@ namespace ConfluenceRulesEngine.Models.Core
                 CardPool[id].Name,
                 CardPool[id].Type,
                 CardPool[id].CardEffects,
-                ownerId,
+                null!,
                 null!)); // TODO since we want a Deck to be constructed with the Cards,
                          // but the Cards need to be constructed with a Zone, one has to take precedence
                          // so this is an explicit null because it otherwise makes no sense for Card.CurrentZone to be null

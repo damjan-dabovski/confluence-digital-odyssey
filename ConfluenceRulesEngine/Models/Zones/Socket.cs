@@ -6,7 +6,7 @@ using ConfluenceRulesEngine.Models.Shared;
 namespace ConfluenceRulesEngine.Models.Zones
 {
     public class Socket
-        : IZone, IHasObjectId
+        : IZone, IChoosable
     {
         private readonly SingleCardCollection card = [];
 
@@ -41,5 +41,7 @@ namespace ConfluenceRulesEngine.Models.Zones
                 this.InterruptLocked = null;
             }
         }
+
+        public string ToChoiceDisplayString() => $"[{this.objectId}: {(this.IsInterrupt ? "Interrupt" : "Non-Interrupt")}]";
     }
 }

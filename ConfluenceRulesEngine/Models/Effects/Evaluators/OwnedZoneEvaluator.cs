@@ -1,4 +1,5 @@
-﻿using ConfluenceRulesEngine.Models.Shared;
+﻿using ConfluenceRulesEngine.Models.Core;
+using ConfluenceRulesEngine.Models.Shared;
 using ConfluenceRulesEngine.Models.Zones;
 
 using static ConfluenceRulesEngine.Models.Shared.Enums;
@@ -8,10 +9,10 @@ namespace ConfluenceRulesEngine.Models.Effects.Evaluators
     public class OwnedZoneEvaluator
         : IEvaluator<IZone>
     {
-        public readonly IEvaluator<PlayerId> Owner;
+        public readonly IEvaluator<Player> Owner;
         public readonly ZoneType Type;
 
-        public OwnedZoneEvaluator(IEvaluator<PlayerId> owner, ZoneType type)
+        public OwnedZoneEvaluator(IEvaluator<Player> owner, ZoneType type)
         {
             this.Owner = owner;
             this.Type = type;
@@ -19,9 +20,7 @@ namespace ConfluenceRulesEngine.Models.Effects.Evaluators
 
         public IZone Evaluate(GameContext context)
         {
-            var ownerId = this.Owner.Evaluate(context);
-
-            var owner = context.Players[ownerId];
+            var owner = this.Owner.Evaluate(context);
 
             return this.Type switch
             {
