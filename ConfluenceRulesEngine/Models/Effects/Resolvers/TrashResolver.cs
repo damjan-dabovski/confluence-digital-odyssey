@@ -14,10 +14,7 @@ namespace ConfluenceRulesEngine.Models.Effects.Resolvers
                 // TODO handle prompting users for ordering the cards when multiple are
                 // trashed at once (incl. splitting the card processing in APNAP order)
 
-                ActionHelpers.Move(
-                    targetCard,
-                    targetCard.CurrentZone,
-                    targetCard.Owner.Trash);
+                ActionHelpers.Move(targetCard, targetCard.Owner.Trash);
             }
         }
     }

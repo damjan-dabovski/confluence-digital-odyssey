@@ -1,5 +1,7 @@
 ﻿using ConfluenceRulesEngine.Models.Shared;
 
+using Action = ConfluenceRulesEngine.Models.Effects.Actions.Action;
+
 namespace ConfluenceRulesEngine.Models.Effects.Evaluators.Operators.ControlFlow
 {
     public class RepeatActionEvaluator

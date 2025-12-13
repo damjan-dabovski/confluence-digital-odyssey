@@ -1,6 +1,5 @@
 ﻿using ConfluenceRulesEngine.Models.Core;
 using ConfluenceRulesEngine.Models.Effects.Evaluators;
-using ConfluenceRulesEngine.Models.Effects.Evaluators.Helpers;
 
 namespace ConfluenceRulesEngine.Models.Effects.Actions
 {

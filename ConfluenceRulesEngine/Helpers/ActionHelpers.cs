@@ -5,14 +5,14 @@ namespace ConfluenceRulesEngine.Helpers
 {
     public static class ActionHelpers
     {
-        public static void Move(Card card, IZone source, IZone destination)
+        public static void Move(Card card, IZone destination)
         {
-            if (source == destination)
+            if (card.CurrentZone == destination)
             {
                 throw new InvalidOperationException("Can't move into the same zone");
             }
 
-            source.Remove(card);
+            card.CurrentZone.Remove(card);
 
             destination.Add(card);
 

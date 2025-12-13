@@ -6,7 +6,6 @@ using ConfluenceRulesEngine.Models.Effects.Resolvers;
 using ConfluenceRulesEngine.Models.Shared;
 using ConfluenceRulesEngine.Models.Zones;
 using ConfluenceRulesEngine.Services;
-using ConfluenceRulesEngine.Test.TestHelpers.Evaluators;
 using Moq;
 using static ConfluenceRulesEngine.Models.Shared.Enums;
 

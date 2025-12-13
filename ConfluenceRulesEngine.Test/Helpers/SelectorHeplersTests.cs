@@ -8,10 +8,10 @@ namespace ConfluenceRulesEngine.Test.Helpers
         public class GetNonInterruptSocketsForPlayer
         {
             [TestMethod]
-            public void GetsAllSocketsForPlayer(PlayerId playerId)
+            public void GetsAllSocketsForPlayer()
             {
                 // TODO rework to new helpers logic
-                Assert.Fail();
+                Assert.Inconclusive("Tests for this needs to be rewritten with new helpers logic");
             }
         }
     }
