@@ -1,21 +1,13 @@
 ﻿
 using ConfluenceRulesEngine.Models.Core;
-using ConfluenceRulesEngine.Models.Effects.Evaluators.Helpers;
 using ConfluenceRulesEngine.Models.Shared;
 
 namespace ConfluenceRulesEngine.Models.Zones
 {
-    public class Socket
+    public class Socket(int objectId)
         : IZone, IChoosable
     {
         private readonly SingleCardCollection card = [];
-
-        private readonly SocketId objectId;
-
-        public Socket(int objectId)
-        {
-            this.objectId = new(objectId);
-        }
 
         public int ObjectId => objectId;
 
@@ -42,6 +34,6 @@ namespace ConfluenceRulesEngine.Models.Zones
             }
         }
 
-        public string ToChoiceDisplayString() => $"[{this.objectId}: {(this.IsInterrupt ? "Interrupt" : "Non-Interrupt")}]";
+        public string ToChoiceDisplayString() => $"[{this.ObjectId}: {(this.IsInterrupt ? "Interrupt" : "Non-Interrupt")}]";
     }
 }

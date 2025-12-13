@@ -1,5 +1,4 @@
 ﻿using ConfluenceRulesEngine.Models.Effects;
-using ConfluenceRulesEngine.Models.Effects.Evaluators.Helpers;
 using ConfluenceRulesEngine.Models.Shared;
 using ConfluenceRulesEngine.Models.Zones;
 
@@ -12,7 +11,7 @@ namespace ConfluenceRulesEngine.Models.Core
     {
         private readonly int objectId;
 
-        public readonly CardId CardId;
+        public readonly int CardId;
         public readonly string Name;
         public readonly CardType Type;
         public readonly IEnumerable<CardEffect> CardEffects;
@@ -23,7 +22,7 @@ namespace ConfluenceRulesEngine.Models.Core
 
         public Card(int cardId, int objectId, string name, CardType type, IEnumerable<CardEffect> cardEffects, Player owner, IZone currentZone)
         {
-            this.CardId = new(cardId);
+            this.CardId = cardId;
             this.objectId = objectId;
             this.Name = name;
             this.Type = type;
