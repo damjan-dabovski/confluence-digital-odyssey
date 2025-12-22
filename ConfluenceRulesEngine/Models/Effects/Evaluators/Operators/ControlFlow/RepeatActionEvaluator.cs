@@ -21,7 +21,7 @@ namespace ConfluenceRulesEngine.Models.Effects.Evaluators.Operators.ControlFlow
         {
             if (this.Times > 0)
             {
-                context.ActionQueue.Add(new RepeatActionEvaluator(this.Times - 1, this.Action));
+                context.ActionQueue.AddToBack(new RepeatActionEvaluator(this.Times - 1, this.Action));
             }
 
             return this.Action.Evaluate(context);

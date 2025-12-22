@@ -27,9 +27,7 @@ namespace ConfluenceRulesEngine.Models.Effects.Resolvers
                         new LiteralEvaluator<IEnumerable<Card>>([existingCard]),
                         installAction);
 
-                    // TODO!IMPORTANT use an actual deque for this, even an in-house implementation would suffice
-                    // since there's currently no consistent semantics for what the beginning and end of the queue are
-                    gameContext.ActionQueue.Add(existingCardTrashAction);
+                    gameContext.ActionQueue.AddToFront(existingCardTrashAction);
                     return;
                 }
 

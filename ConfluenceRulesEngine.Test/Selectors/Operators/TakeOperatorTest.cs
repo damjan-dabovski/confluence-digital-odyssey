@@ -1,6 +1,6 @@
-﻿using ConfluenceRulesEngine.Models.Effects.Evaluators.Operators.List;
+﻿using ConfluenceRulesEngine.Models.Effects.Evaluators.Helpers;
+using ConfluenceRulesEngine.Models.Effects.Evaluators.Operators.List;
 using ConfluenceRulesEngine.Models.Shared;
-using ConfluenceRulesEngine.Test.TestHelpers.Fakes;
 
 namespace ConfluenceRulesEngine.Test.Selectors.Operators
 {
@@ -13,7 +13,7 @@ namespace ConfluenceRulesEngine.Test.Selectors.Operators
             // Arrange
             var context = new GameContext([], [], []);
 
-            var list = new FakeSelector<IEnumerable<int>>([1, 2, 3, 4, 5]); //TODO use mocks for this instead of fakes?
+            var list = new LiteralEvaluator<IEnumerable<int>>([1, 2, 3, 4, 5]);
 
             var selector = new TakeEvaluator<int>(list, 2);
 
