@@ -38,10 +38,21 @@ namespace ConfluenceRulesEngine.Models.Effects.Resolvers
                     return;
                 }
 
+                // this would be better if it checked against components instead of literal types
+                // best save that for the rewrite
+                if (chosenSocket.IsInterrupt && targetCard.Type != Enums.CardType.Function)
+                {
+                    throw new InvalidOperationException("Trying to install a non-FN card in an interrupt slot");
+                }
+
+                var installInterruptLocked = installAction.InstallInterruptLocked?.Evaluate(gameContext) ?? true;
+
                 ActionHelpers.Move(targetCard, chosenSocket);
 
-                //TODO!CRITICAL this currently doesn't work with interrupts; it also needs to take in a parameter that would allow interrupts to be installed locked or unlocked
-                this is just to break compilation
+                if (chosenSocket.IsInterrupt)
+                {
+                    chosenSocket.InterruptLocked = installInterruptLocked;
+                }
             }
         }
     }

@@ -13,12 +13,15 @@ namespace ConfluenceRulesEngine.Models.Effects.Actions
 
         public readonly IEvaluator<CoordsFilter> AllowedSlots;
 
-        public InstallAction(IEvaluator<Card?> chosenCard, IEvaluator<Player> targetPlayer, IEvaluator<CoordsFilter> allowedSlots, Action? continuation = null)
+        public readonly IEvaluator<bool>? InstallInterruptLocked;
+
+        public InstallAction(IEvaluator<Card?> chosenCard, IEvaluator<Player> targetPlayer, IEvaluator<CoordsFilter> allowedSlots, IEvaluator<bool>? installInterruptLocked = null, Action? continuation = null)
             : base(continuation)
         {
             this.ChosenCard = chosenCard;
             this.TargetPlayer = targetPlayer;
             this.AllowedSlots = allowedSlots;
+            this.InstallInterruptLocked = installInterruptLocked;
         }
     }
 }
